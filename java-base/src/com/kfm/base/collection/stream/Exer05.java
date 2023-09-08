@@ -9,7 +9,7 @@ public class Exer05 {
 
 
 
-    static List<String> points = new ArrayList<>(List.of("A","2","3","4","5","6","7","8","9","10","J","Q","K"));
+    static List<String> points = new ArrayList<>(List.of("2","A","K","Q","J","10","9","8","7","6","5","4","3"));
 
     static List<String> poker = new ArrayList<>();
 
@@ -31,11 +31,18 @@ public class Exer05 {
 
         Collections.shuffle(poker);
 
-        player1.addAll(poker.subList(0,17));
-        player2.addAll(poker.subList(17,34));
-        player3.addAll(poker.subList(34,51));
+        for (int count = 0 , i = 0; count < 17; count++) {
+            player1.add(poker.get(i++));
+            player2.add(poker.get(i++));
+            player3.add(poker.get(i++));
+        }
+        bottom.add(poker.get(51));
+        bottom.add(poker.get(52));
+        bottom.add(poker.get(53));
 
-        bottom.addAll(poker.subList(51,54));
+
+
+
 
         player1.stream().sorted().forEach(e -> System.out.print(e + " "));
         System.out.println();

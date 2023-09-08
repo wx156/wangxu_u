@@ -6,7 +6,7 @@ import java.util.Comparator;
 public class Exer03 {
     public static void main(String[] args) {
         Employee em1 = new Employee("张三1",25,37.0);
-        Employee em2 = new Employee("张三2",27,344.0);
+        Employee em2 = new Employee("张三2",27,355.4);
         Employee em3 = new Employee("张三3",28,355.5);
         Employee em4 = new Employee("张三4",23,35.6);
         Employee em5 = new Employee("张三5",22,35.77);
@@ -30,7 +30,7 @@ public class Exer03 {
                 if (o2.getSalary() == o1.getSalary()){
                     return o1.getAge() - o2.getAge();
                 }
-                return (int)(o2.getSalary() - o1.getSalary());
+                return o2.getSalary() == o1.getSalary() ? 0: o2.getSalary() > o1.getSalary() ? 1:-1;
             }
         })
                 .limit(3)
