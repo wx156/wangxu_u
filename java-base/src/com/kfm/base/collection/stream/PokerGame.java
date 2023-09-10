@@ -3,11 +3,14 @@ package com.kfm.base.collection.stream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class PokerGame {
     //牌堆对象不可见
     private Poker poker = new Poker();
+
+    private Poker1 poker1 = new Poker1();
 
     public PokerGame() {
     }
@@ -78,9 +81,10 @@ public class PokerGame {
 
     /**
      * 炸金花游戏
+     *
      * @return
      */
-    public List<List<String>> boom (int n) {
+    public List<List<String>> boom(int n) {
         if (n < 2 || n > 17) {
             throw new RuntimeException("人数不够");
         }
@@ -108,82 +112,299 @@ public class PokerGame {
         }
         return list;
     }
-}
-
-/**
- * poker类存储牌堆对象，每 new 一个 poker 对象都是一个新的牌堆（poker构造不能写static）
- * poker类
- */
-class Poker {
-    // 花色
-    private static final List<String> color = List.of("♠", "♥", "♣", "♦");
-    // 点数
-    private static final List<String> points = List.of("2", "A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4",
-            "3");
-
-    //一个只能存card对象的pokers集合（存为card 后可以根据order排序）
-    private List<Card> pokers;
-
-    //默认为hasJoker为true
-    public Poker() {
-        this(true);
-    }
-
-    /*
-        hasJoker的牌堆是不一样的，根据传入的hasJoker创建不同的牌堆
-     */
-    public Poker(boolean hasJoker) {
-        pokers = new ArrayList<>();
-        for (int i = 0; i < color.size(); i++) {
-            for (int j = 0; j < points.size(); j++) {
-                pokers.add(new Card(color.get(i), points.get(j), 4 * j + i + j + 2));
-            }
-        }
-        if (hasJoker) {
-            pokers.add(new Card(null, "大王", 0));
-            pokers.add(new Card(null, "小王", 1));
-        }
-    }
-
-    public List<Card> getPokers() {
-        return pokers;
-    }
-
-    public void setPokers(List<Card> pokers) {
-        this.pokers = pokers;
-    }
 
     /**
-     * \
-     * <p>
-     * Card用来存每一张扑克牌 card 基于poker，比 poker 多一个字段用于实现比较
+     * 十点半游戏
      */
-    class Card implements Comparable<Card> {
-        private String color;
-        private String point;
-        private Integer order;
+    public List<List<String>> ten() {
+        Scanner inpu = new Scanner(System.in);
+        List<Poker1.Card> p = poker1.getPokers();
 
-        public Card(String color, String point, Integer order) {
-            this.color = color;
-            this.point = point;
-            this.order = order;
+        for (int i = 0; i < 3; i++) {
+            Collections.shuffle(p);
         }
+        List<List<String>> list = new ArrayList<>();
 
-        public Integer getOrder() {
-            return this.order;
+        List<Poker1.Card> pc = new ArrayList<>();
+        List<Poker1.Card> pl = new ArrayList<>();
+
+        pl.add(p.get(0));
+        pc.add(p.get(1));
+        int sum = 0;
+        pl.stream().map(e -> e.getString()).forEach(e -> System.out.println(e));
+        int result = -1;
+        int index = 2;
+        boolean flag = false;
+        while (result != 0 || pl.stream().mapToDouble(e -> e.getValue()).sum() * 10 >= 105) {
+
+            if (result != 0) {
+                System.out.println("请决定要不要牌（要牌请输入1，不要请输入0）");
+                result = inpu.nextInt();
+            } else {
+                break;
+            }
+
+            while (result != 0 && result != 1) {
+                System.out.println("请输入正确的请求");
+                result = inpu.nextInt();
+                break;
+            }
+            for (int i = index; i < p.size(); i++) {
+                if (result == 1) {
+                    pl.add(p.get(i));
+                    sum = pl.stream().mapToInt(e -> e.getValue()).sum();
+                    break;
+                }
+            }
+            System.out.println(pl.stream().map(e -> e.getString()).collect(Collectors.joining()));
+            if (pl.size() == 5){
+                flag = true;
+                break;
+            }
+            if (sum == 105) {
+                System.out.println("你不需要再加牌了");
+                break;
+            } else if (sum > 105) {
+                System.out.println("You're dead already");
+                break;
+            }
+            index++;
+
+        }
+        if (flag && pl.stream().mapToInt(e -> e.getValue()).sum() <= 105){
+            System.out.println("玩家赢了");
+        }else {
+            for (int i = index; i < p.size(); i++) {
+                if (sum > 105) {
+                    flag = false;
+                } else if (pc.stream().mapToInt(e -> e.getValue()).sum() < sum) {
+                    pc.add(p.get(i));
+                    if (pc.stream().mapToInt(e -> e.getValue()).sum() > 105) {
+                        flag = true;
+                    } else if (pc.stream().mapToInt(e -> e.getValue()).sum() <= 105 && pc.stream().mapToInt(e -> e.getValue()).sum() >= sum) {
+                        flag = false;
+                    } else {
+                        flag = true;
+                    }
+                } else {
+                    flag = false;
+                }
+                index++;
+            }
+
+            if (flag) {
+                System.out.println("玩家赢了");
+            } else {
+                System.out.println("电脑赢了");
+            }
+            List<String> pl1 = pl.stream().map(e -> e.getString()).collect(Collectors.toList());
+            list.add(pl1);
+            list.add(pc.stream().map(e -> e.getString()).collect(Collectors.toList()));
+        }
+        return list;
+    }
+
+
+    /**
+     * 十点半游戏的类
+     */
+    class Poker1 {
+        private static final List<String> color = List.of("♠", "♥", "♣", "♦");
+        // 点数
+        private static final List<String> points = List.of("A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q"
+                , "K");
+
+        private List<Card> pokers;
+
+        //默认为hasJoker为true
+        public Poker1() {
+            this(true);
         }
 
         /*
-            用户看到的是string而不是对象地址
+            hasJoker的牌堆是不一样的，根据传入的hasJoker创建不同的牌堆
          */
-        public String getString() {
-            return color == null ? point : color + point;
+        public Poker1(boolean hasJoker) {
+            pokers = new ArrayList<>();
+            for (int i = 0; i < color.size(); i++) {
+                for (int j = 0; j < points.size() - 3; j++) {
+                    pokers.add(new Card(color.get(i), points.get(j), 4 * j + i + j + 2, (j + 1) * 10));
+                }
+                for (int j = 10; j < points.size(); j++) {
+                    pokers.add(new Card(color.get(i), points.get(j), 4 * j + i + j + 2, 5));
+                }
+            }
+
+            if (hasJoker) {
+                pokers.add(new Card(null, "大王", 0, 5));
+                pokers.add(new Card(null, "小王", 1, 5));
+            }
         }
 
-        @Override
-        public int compareTo(Card o) {
-            return this.order - o.order;
+
+        public List<Card> getPokers() {
+            return pokers;
         }
+
+        public void setPokers(List<Card> pokers) {
+            this.pokers = pokers;
+        }
+
+
+        /**
+         * \
+         * <p>
+         * Card用来存每一张扑克牌 card 基于poker，比 poker 多一个字段用于实现比较
+         */
+        class Card implements Comparable<Card> {
+            private String color;
+            private String point;
+            private Integer order;
+
+            private Integer value;
+
+            public Card(String color, String point, Integer order) {
+                this.color = color;
+                this.point = point;
+                this.order = order;
+            }
+
+            public Card(String color, String point, Integer order, Integer value) {
+                this.color = color;
+                this.point = point;
+                this.value = value;
+                this.order = order;
+            }
+
+            public Integer getValue() {
+                return value;
+            }
+
+
+            /*
+                            用户看到的是string而不是对象地址
+                         */
+            public String getString() {
+                return color == null ? point : color + point;
+            }
+
+            @Override
+            public int compareTo(Card o) {
+                return this.order - o.order;
+            }
+
+        }
+
+
+    }
+
+    /**
+     * poker类存储牌堆对象，每 new 一个 poker 对象都是一个新的牌堆（poker构造不能写static）
+     * poker类
+     */
+    class Poker {
+        // 花色
+        private static final List<String> color = List.of("♠", "♥", "♣", "♦");
+        // 点数
+        private static final List<String> points = List.of("2", "A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4",
+                "3");
+
+        //一个只能存card对象的pokers集合（存为card 后可以根据order排序）
+        private List<Card> pokers;
+
+        //默认为hasJoker为true
+        public Poker() {
+            this(true);
+        }
+
+        /*
+            hasJoker的牌堆是不一样的，根据传入的hasJoker创建不同的牌堆
+         */
+        public Poker(boolean hasJoker) {
+            pokers = new ArrayList<>();
+            for (int i = 0; i < color.size(); i++) {
+                for (int j = 0; j < points.size(); j++) {
+                    pokers.add(new Card(color.get(i), points.get(j), 4 * j + i + j + 2));
+                }
+            }
+            if (hasJoker) {
+                pokers.add(new Card(null, "大王", 0));
+                pokers.add(new Card(null, "小王", 1));
+            }
+        }
+
+
+        public List<Card> getPokers() {
+            return pokers;
+        }
+
+        public void setPokers(List<Card> pokers) {
+            this.pokers = pokers;
+        }
+
+
+        /**
+         * \
+         * <p>
+         * Card用来存每一张扑克牌 card 基于poker，比 poker 多一个字段用于实现比较
+         */
+        class Card implements Comparable<Card> {
+            private String color;
+            private String point;
+            private Integer order;
+
+            private Double value;
+
+            public Card(String color, String point, Integer order) {
+                this.color = color;
+                this.point = point;
+                this.order = order;
+            }
+
+            public Card(String color, String point, Double value) {
+                this.color = color;
+                this.point = point;
+                this.value = value;
+            }
+
+            public String getColor() {
+                return color;
+            }
+
+            public void setColor(String color) {
+                this.color = color;
+            }
+
+            public String getPoint() {
+                return point;
+            }
+
+            public void setPoint(String point) {
+                this.point = point;
+            }
+
+            public void setOrder(Integer order) {
+                this.order = order;
+            }
+
+            public Integer getOrder() {
+                return this.order;
+            }
+
+            /*
+                用户看到的是string而不是对象地址
+             */
+            public String getString() {
+                return color == null ? point : color + point;
+            }
+
+            @Override
+            public int compareTo(Card o) {
+                return this.order - o.order;
+            }
+
+        }
+
     }
 
 }
