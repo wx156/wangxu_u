@@ -136,14 +136,12 @@ public class PokerGame {
         int index = 2;
         boolean flag = false;
         while (result != 0 || pl.stream().mapToDouble(e -> e.getValue()).sum() * 10 >= 105) {
-
             if (result != 0) {
                 System.out.println("请决定要不要牌（要牌请输入1，不要请输入0）");
                 result = inpu.nextInt();
             } else {
                 break;
             }
-
             while (result != 0 && result != 1) {
                 System.out.println("请输入正确的请求");
                 result = inpu.nextInt();
@@ -156,6 +154,7 @@ public class PokerGame {
                     break;
                 }
             }
+            index++;
             System.out.println(pl.stream().map(e -> e.getString()).collect(Collectors.joining()));
             if (pl.size() == 5){
                 flag = true;
@@ -168,7 +167,7 @@ public class PokerGame {
                 System.out.println("You're dead already");
                 break;
             }
-            index++;
+
 
         }
         if (flag && pl.stream().mapToInt(e -> e.getValue()).sum() <= 105){
@@ -179,9 +178,10 @@ public class PokerGame {
                     flag = false;
                 } else if (pc.stream().mapToInt(e -> e.getValue()).sum() < sum) {
                     pc.add(p.get(i));
-                    if (pc.stream().mapToInt(e -> e.getValue()).sum() > 105) {
+                    if (pc.stream().mapToInt(e -> e.getValue()).sum() > 105 && sum <= 105) {
                         flag = true;
-                    } else if (pc.stream().mapToInt(e -> e.getValue()).sum() <= 105 && pc.stream().mapToInt(e -> e.getValue()).sum() >= sum) {
+                    } else if (pc.stream().mapToInt(e -> e.getValue()).sum() <= 105 && pc.stream().mapToInt(e -> e.getValue()).sum() >= sum &&
+                    pc.stream().mapToInt(e -> e.getValue()).sum() <= 105) {
                         flag = false;
                     } else {
                         flag = true;
@@ -228,13 +228,12 @@ public class PokerGame {
             pokers = new ArrayList<>();
             for (int i = 0; i < color.size(); i++) {
                 for (int j = 0; j < points.size() - 3; j++) {
-                    pokers.add(new Card(color.get(i), points.get(j), 4 * j + i + j + 2, (j + 1) * 10));
+                    pokers.add(new Card(color.get(i), points.get(j), 4 * j + i + j, (j + 1) * 10));
                 }
                 for (int j = 10; j < points.size(); j++) {
-                    pokers.add(new Card(color.get(i), points.get(j), 4 * j + i + j + 2, 5));
+                    pokers.add(new Card(color.get(i), points.get(j), 4 * j + i + j, 5));
                 }
             }
-
             if (hasJoker) {
                 pokers.add(new Card(null, "大王", 0, 5));
                 pokers.add(new Card(null, "小王", 1, 5));
@@ -282,8 +281,8 @@ public class PokerGame {
 
 
             /*
-                            用户看到的是string而不是对象地址
-                         */
+                  用户看到的是string而不是对象地址
+             */
             public String getString() {
                 return color == null ? point : color + point;
             }
