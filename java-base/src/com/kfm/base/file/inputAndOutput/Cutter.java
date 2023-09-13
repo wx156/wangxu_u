@@ -38,7 +38,6 @@ public class Cutter {
                 }else {
 
                 }
-
                 fis.close();
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
