@@ -25,10 +25,11 @@ public class Exer01 {
             反序列化
          */
         try (FileInputStream fis = new FileInputStream("D:\\serialize\\a.txt");ObjectInputStream ois = new ObjectInputStream(fis)) {
-            byte [] bytes = new byte[6];
+            byte [] bytes = new byte[1024];
             if (ois.available() != -1){
-                ois.read(bytes);
+                ois.read(bytes,0,200);
             }
+            System.out.println(bytes);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {

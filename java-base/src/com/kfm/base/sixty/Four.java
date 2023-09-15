@@ -13,23 +13,19 @@ public class Four {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("请输入一个正整数");
-        int a = input.nextInt();
-        if (a <= 1){
-            return;
-        } else {
-            out:for (int i = 2; i < a; i++) {
-                for (int j = 2; j <= i >> 1; j++) {
-                    if (i % j ==0){
-                        return;
-                    }
-                    System.out.println(i);
-                }
-
-
-
-
+        int x = input.nextInt();
+        System.out.print(x+"=");
+        int i=2;
+        while(i<=x) {        //使用循环来找到可以被整除的数，然后通过out函数输出
+            if (i == x) {        //如果相等的话，就说明这个数没有因数，只有1和它自己；
+                System.out.println(i);
+                break;
+            } else if (x % i == 0) {        //如果这个数有因数，然后找到除去这个因数后的值，继续循环
+                System.out.print(i + "*");
+                x = x / i;
+            } else {            //如果都不满足，则继续循环
+                i++;
             }
-
         }
     }
 }
