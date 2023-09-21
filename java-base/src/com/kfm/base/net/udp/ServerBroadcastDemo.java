@@ -1,4 +1,4 @@
-package com.kfm.base.net;
+package com.kfm.base.net.udp;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
