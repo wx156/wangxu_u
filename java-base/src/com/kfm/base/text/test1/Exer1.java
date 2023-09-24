@@ -1,4 +1,4 @@
-package com.kfm.base.test1;
+package com.kfm.base.text.test1;
 
 public class Exer1 {
     public static void main(String[] args) {
