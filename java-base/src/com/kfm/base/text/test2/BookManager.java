@@ -7,9 +7,10 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class BookManager {
-    private String url;
-    private String user;
-    private String pass;
+    private String url = "jdbc:mysql://localhost:3306/manger";
+    private String user = "root";
+    private String pass = "1234";
+    private Connection conn;
     private PreparedStatement ps;
     private ResultSet rs;
     private Scanner inpu = new Scanner(System.in);
@@ -26,19 +27,17 @@ public class BookManager {
         System.out.println(str);
     }
 
-    public BookManager(String url, String user, String pass) {
-        this.url = url;
-        this.user = user;
-        this.pass = pass;
+    public BookManager() {
         init();
     }
 
-    private Connection conn;
+
 
     private void init() {
         getConnect();
-
-        if (!haveTables()) {
+        String s1 = "books";
+        String s2 = "operation_log";
+        if (!haveTables(s1,s2)) {
             runTxt();
         }
     }
@@ -61,19 +60,26 @@ public class BookManager {
         }
 
     }
-
-    private boolean haveTables() {
+    private boolean haveTables(String str,String str1) {
         getConnect();
         try {
             ps = conn.prepareStatement("show tables");
             ps.execute();
             rs = ps.getResultSet();
+            boolean flag1 = true;
+            boolean flag2 = true;
             while (rs.next()) {
-                if (rs.getRow() >= 2){
-                    return true;
+                String string = rs.getString(1);
+                if (str.equals(string)){
+                    flag1 = true;
+                }else if (str1.equals(string)){
+                    flag2 = true;
+                }else {
+                    flag1 = false;
+                    flag2 = false;
                 }
             }
-            return false;
+            return (flag1 || flag2);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -124,13 +130,41 @@ public class BookManager {
         conn = null;
     }
 
+    public void start (){
+        print("欢迎光临开发喵书院！" + "\n" + "请输入序号选择功能：");
+        print(" 1 展示所有书籍");
+        print(" 2 添加书籍");
+        print(" 3 修改图书数量");
+        print(" 4 删除书籍");
+        print(" 5 退出");
+
+        int result = inpu.nextInt();
+        switch (result){
+            case 1 -> showAllBooks();
+            case 2 -> addBookInfo();
+            case 3 -> modifyBookQuantity();
+            case 4 -> removeBook();
+            case 5 -> {
+                close();
+                System.exit(0);
+            }
+            default -> {
+                print("输入错误，请重新输入：");
+                start();
+            }
+        }
+        start();
+    }
+
     // --------------------------------------------------------------
 
-    private void addBookInfo1(){
+    private void addBookInfo(){
         print("（输入信息顺序为书名、出版日期、作者、价格、数量）" + "\r\n" + "请输入图书信息（中间用短杠隔开）：");
         String str = inpu.next();
         getConnect();
         String sql = "insert into  books(book_title,publication_date,author,price,quantity) values(?,?,?,?,?)";
+        String sql1 = "insert into operation_log (description) values(?)";
+        String result = "插入《" + str.trim().split("-")[0] + "》成功";
         try {
             ps = conn.prepareStatement(sql);
             ps.setObject(1,str.split("-")[0]);
@@ -138,26 +172,32 @@ public class BookManager {
             ps.setNString(3,str.split("-")[2]);
             ps.setDouble(4,Double.valueOf(str.split("-")[3]));
             ps.setInt(5,Integer.valueOf(str.split("-")[4]));
-            ps.execute();
-            print("插入《" + str.trim().split("-")[0] + "》成功");
+            ps.executeUpdate();
+            print(result);
+            ps = conn.prepareStatement(sql1);
+            ps.setString(1,result);
+            ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-    public void addBookInfo(){
-        addBookInfo1();
-    }
-    private void removeBook1(){
+
+    private void removeBook(){
         print("请输入要删除的书的名称：");
         String str = inpu.next();
+        String result = "《" + str + "》" + "删除成功";
         if (havaBook(str)) {
             String sql = "delete from books where book_title = ?";
+            String sql1 = "insert into operation_log (description) values(?)";
             getConnect();
             try {
                 ps = conn.prepareStatement(sql);
                 ps.setObject(1,str);
                 ps.executeUpdate();
-                print("《" + str + "》" + "删除成功");
+                print(result);
+                ps = conn.prepareStatement(sql1);
+                ps.setString(1,result);
+                ps.executeUpdate();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -181,11 +221,9 @@ public class BookManager {
         }
         return false;
     }
-    public void removeBook() {
-        removeBook1();
-    }
 
-    private void modifyBookQuantity1(){
+
+    private void modifyBookQuantity(){
         print("请输入要更改的书的名称：");
         String str = inpu.next();
         print("请输入要修改的数量");
@@ -198,13 +236,18 @@ public class BookManager {
                 num = inpu.nextInt();
             }
             getConnect();
+            String result = "修改《" + str + "》" + "的数量为"+ num + "本成功";
             String sql = "update books set quantity = ? where book_title = ?";
+            String sql1 = "insert into operation_log (description) values(?)";
             try {
                 ps = conn.prepareStatement(sql);
                 ps.setObject(1,num);
                 ps.setObject(2,str);
                 ps.executeUpdate();
-                print("修改《" + str + "》" + "的数量为"+ num + "本成功");
+                print(result);
+                ps = conn.prepareStatement(sql1);
+                ps.setString(1,result);
+                ps.executeUpdate();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -212,9 +255,7 @@ public class BookManager {
             print("查无此书");
         }
     }
-    public void modifyBookQuantity(){
-        modifyBookQuantity1();
-    }
+
     private int bookCount(String str) {
         getConnect();
         String sql = "select quantity from books where book_title = ?";
@@ -232,7 +273,7 @@ public class BookManager {
     }
     //----------------------------------------------------------------------
 
-    public void showAllBooks(){
+    private void showAllBooks(){
         getConnect();
         String sql = "select * from books";
         try {
