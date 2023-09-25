@@ -1,4 +1,4 @@
-package com.kfm.base.mysql;
+package com.kfm.base.jdbc;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
