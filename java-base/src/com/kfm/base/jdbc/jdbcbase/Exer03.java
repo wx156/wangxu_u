@@ -1,4 +1,4 @@
-package com.kfm.base.jdbc;
+package com.kfm.base.jdbc.jdbcbase;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

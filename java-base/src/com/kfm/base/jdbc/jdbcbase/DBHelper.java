@@ -1,4 +1,4 @@
-package com.kfm.base.jdbc;
+package com.kfm.base.jdbc.jdbcbase;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,6 +10,7 @@ public class DBHelper {
     private String pass;
     private Connection conn;
 
+    private boolean autoCommit = true;
     private PreparedStatement ps;
 
     private ResultSet rs;
@@ -37,8 +38,8 @@ public class DBHelper {
      * 获取连接，没有的话创建，
      * @return 返回一个connection 对象
      */
-    private Connection getConnect(){
-        if (conn == null){
+    private Connection getConnect() throws SQLException {
+        if (conn == null && conn.isClosed()){
             try {
                 conn = DriverManager.getConnection(url ,user,pass);
             } catch (SQLException e) {
@@ -46,6 +47,42 @@ public class DBHelper {
             }
         }
         return conn;
+    }
+
+    public void startTransaction(){
+        try {
+            getConnect();
+            if (conn != null && !conn.isClosed() && autoCommit){
+                conn.setAutoCommit(false);
+                autoCommit = false;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void commit(){
+        try {
+            getConnect();
+            if (conn != null && !conn.isClosed() && !autoCommit){
+                conn.commit();
+                autoCommit = true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void rollback(){
+        try {
+            getConnect();
+            if (conn != null && !conn.isClosed() && !autoCommit){
+                conn.rollback();
+                autoCommit = true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
