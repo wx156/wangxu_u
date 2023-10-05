@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>学生登录系统界面</title>
+  <style>
+    .form-container {
+      display: flex;
+    }
+
+    .form-section {
+      flex-basis: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form-container">
+    <div class="form-section">
+      <div>
+        <label for="username">登录名:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input type="text" id="username" placeholder="在这里输入">
+        <span>(可包含a-z，0-9和下划线)</span>
+      </div>
+      
+      <div>
+        <label for="password">密码:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input type="password" id="password" placeholder="在这里输入">
+        <span>(至少包含6个字符)</span>
+      </div>
+      
+      <div>
+        <label for="confirm-password">再次输入密码:&nbsp;</label>
+        <input type="password" id="confirm-password" placeholder="在这里输入">
+      </div>
+      
+      <div>
+        <label for="email">电子邮箱:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input type="email" id="email" placeholder="在这里输入">
+        <span>(必须包含@字符)</span>
+      </div>
+
+      <div>
+        <label for="gender">性别:&nbsp;</label>
+        <img src="picture/Male.gif" alt="动态图片1">
+        <input type="radio" name="gender" value="男">
+        <img src="picture/Female.gif" alt="动态图片2">
+        <input type="radio" name="gender" value="女">
+      </div>
+
+      <div>
+        <label for="avatar">头像:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <button>选择文件</button>
+        <span>无选择</span>
+      </div>
+
+      <div>
+        <label for="hobbies">爱好:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input type="checkbox" id="hobby1" value="运动">运动
+        <input type="checkbox" id="hobby2" value="聊天">聊天
+        <input type="checkbox" id="hobby3" value="玩游戏">玩游戏
+      </div>
+
+      <div>
+        <label for="city">喜欢的城市:&nbsp;</label>
+        <select id="city">
+          <option value="beijing">北京</option>
+          <option value="shanghai">上海</option>
+          <option value="guangzhou">广州</option>
+          <option value="shenzhen">深圳</option>
+          <option value="chengdu">成都</option>
+          <option value="hangzhou">杭州</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="agreement-container">
+        <img src="picture/read.gif" alt="网络协议图片">
+        <label for="agreement">欢迎阅读协议:</label>
+      </div>
+      <textarea id="agreement" rows="5" cols="5">请阅读并同意网络协议</textarea>
+    </div>
+  </div>
+  
+  <div class="button-container">
+    <button>同意</button>
+    <button>重写</button>
+  </div>
+  
+</body>
+</html>
