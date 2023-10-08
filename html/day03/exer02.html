@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .main {
+        height: 614px;
+        width: 1226px;
+        display: flex;
+        flex-direction: row;
+        margin: auto;
+        margin-top: 20px;
+        flex-wrap: nowrap;
+      }
+      .main > div:nth-of-type(1) {
+        height: 614px;
+        width: 234px;
+        display: flex;
+      }
+      .main > div:nth-of-type(2) {
+        height: 614px;
+        width: max-content;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        font: 14px/1.5 Helvetica Neue, Helvetica, Arial, Microsoft Yahei,
+          Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
+      }
+      .min {
+        height: 300px;
+        width: 234px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+      }
+      h2 {
+        width: 1226px;
+        flex-direction: row;
+        margin: auto;
+        margin-top: 150px;
+        flex-wrap: nowrap;
+      }
+      .main > div:nth-of-type(2) img {
+        width: 160px;
+        height: 160px;
+        margin: 0px auto;
+        margin-top: 20px;
+      }
+
+      .min :hover {
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .one :hover {
+        text-decoration: none;
+        cursor: pointer;
+      }
+      h3 {
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        margin-top: 0px;
+      }
+      .price {
+        text-align: center;
+        color: #ff6700;
+      }
+      .price del {
+        color: #b0b0b0;
+        list-style-type: none;
+      }
+      .desc {
+        text-align: center;
+        margin: 0;
+        color: #b0b0b0;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>手机</h2>
+    <div class="main">
+      <div class="one">
+        <img src="../day01/picture/001.webp" alt="" />
+      </div>
+      <div>
+        <div class="min">
+          <img src="../day01/picture/01.webp" alt="" />
+          <h3>Redmi Note 13 Pro</h3>
+          <p class="desc">小金刚品质</p>
+          <p class="price">
+            <span class="num">1399</span>
+            元
+            <span>起</span>
+            <del>
+              <span class="num">1499</span>
+              元
+            </del>
+          </p>
+        </div>
+        <div class="min">
+          <img src="../day01/picture/02.webp" alt="" />
+          <h3>Redmi Note 13 Pro+</h3>
+          <p class="desc">天玑 7200-Ultra 处理器</p>
+          <p class="price">
+            <span class="num">1899</span>
+            元
+            <span>起</span>
+            <del>
+              <span class="num">1999</span>
+              元
+            </del>
+          </p>
+        </div>
+        <div class="min">
+          <img src="../day01/picture/03.webp" alt="" />
+          <h3>Redmi Note 13 5G</h3>
+          <p class="desc">一亿像素 更快更清晰</p>
+          <p class="price">
+            <span class="num">1099</span>
+            元
+            <span>起</span>
+            <del>
+              <span class="num">1199</span>
+              元
+            </del>
+          </p>
+        </div>
+        <div class="min">
+          <img src="../day01/picture/04.webp" alt="" />
+          <h3>Xiaomi MIX Fold 3</h3>
+          <p class="desc">轻薄折叠屏丨徕卡光学丨全焦段四摄</p>
+          <p class="price">
+            <span class="num">8999</span>
+            元
+            <span>起</span>
+          </p>
+        </div>
+        <div class="min">
+          <img src="../day01/picture/05.webp" alt="" />
+          <h3>Redmi K60 至尊版</h3>
+          <p class="desc">旗舰体验全面超预期</p>
+          <p class="price">
+            <span class="num">2599</span>
+            元
+            <span>起</span>
+          </p>
+        </div>
+        <div class="min">
+          <img src="../day01/picture/06.webp" alt="" />
+          <h3>Redmi 12 5G</h3>
+          <p class="desc">5G 骁龙芯，大屏大电量</p>
+          <p class="price">
+            <span class="num">949</span>
+            元
+            <span>起</span>
+          </p>
+        </div>
+        <div class="min">
+          <img src="../day01/picture/07.webp" alt="" />
+          <h3>Redmi Note 12T Pro</h3>
+          <p class="desc">年度 LCD 屏幕之光</p>
+          <p class="price">
+            <span class="num">1499</span>
+            元
+            <span>起</span>
+            <del>
+              <span class="num">1599</span>
+              元
+            </del>
+          </p>
+        </div>
+        <div class="min">
+          <img src="../day01/picture/08.webp" alt="" />
+          <h3>Xiaomi Civi 3</h3>
+          <p class="desc">仿生双眸 天生出色</p>
+          <p class="price">
+            <span class="num">2499</span>
+            元
+            <span>起</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
