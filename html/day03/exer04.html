@@ -3,8 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>小米商城 - Xiaomi 13、Redmi K60、MIX FOLD 2，小米电视官方网站</title>
     <link rel="stylesheet" href="../other/css/bootstrap.min.css" />
+    <link
+      rel="shortcut icon"
+      href="../other/picture/mi.ico"
+      type="image/x-icon"
+    />
     <style>
       body {
         font: 14px/1.5 Helvetica Neue, Helvetica, Arial, Microsoft Yahei,
@@ -14,7 +19,6 @@
         min-width: 1226px;
       }
       .top-1 {
-        width: auto;
         height: 100%;
         background-color: rgb(51, 51, 51);
         float: left;
@@ -25,9 +29,12 @@
         background-color: rgb(51, 51, 51);
         float: right;
         display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-end;
       }
       .top {
-        width: 80%;
+        width: 1198px;
         height: 40px;
         background-color: rgb(51, 51, 51);
         margin: 0 auto;
@@ -43,14 +50,8 @@
         color: #fff;
         text-decoration: none;
       }
-      div > div:after {
-        content: '.';
-        display: block;
-        height: 0;
-        visibility: hidden;
-        clear: both;
-      }
-      a::after {
+
+      .top-1 > a::after {
         content: '|';
         color: #424242;
         margin-left: 5px;
@@ -64,65 +65,176 @@
       .top-2 > div {
         background-color: #424242;
         display: inline-block;
-        line-height: 40px;
-      }
-      .top-2 > div {
+        line-height: 100%;
         color: #b0b0b0;
         text-decoration: none;
+        margin: auto 0;
+        height: 40px;
+        width: 106px;
       }
       a {
         margin-left: 3px;
         padding-left: 5px;
+        line-height: 100%;
       }
-      .top-2 div:hover {
+      .top-2 > div > div > a {
+        line-height: 40px;
+      }
+      .top-2 > div:hover {
         cursor: pointer;
         background-color: #fff;
-        color: #ff7600;
+        color: #ff6700;
         outline: 0;
+      }
+
+      .top-2 > div:hover .suspension {
+        animation: run 0.5s ease-out 0s 1;
+        animation-fill-mode: forwards;
+      }
+      .suspension {
+        width: 316px;
+        height: 78px;
+        text-align: center;
+        position: relative;
+        z-index: 999;
+        right: 209px;
+        line-height: 78px;
+        height: 0px;
+        overflow: hidden;
+      }
+
+      @keyframes run {
+        from {
+          height: 0px;
+        }
+        to {
+          height: 78px;
+        }
+      }
+      svg.bi.bi-search {
+        width: 50px;
+        height: 50px;
+        margin: 0px;
+      }
+      .body-max {
+        width: 100%;
+      }
+      .body-max > div {
+        width: 1198px;
+        height: 100px;
+        margin: 0 auto;
+        background-color: aqua;
+        display: flex;
+      }
+      .body-max > div > img {
+        height: 56px;
+        margin-top: 22px;
+      }
+      .body-max > div > div:nth-last-of-type(2) {
+        width: 60%;
+        height: 100px;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        margin-left: 140px;
+      }
+      .body-max > div > div:nth-last-of-type(2) > span {
+        line-height: 100px;
+        font-size: 16px;
+      }
+      .search {
+        z-index: 1;
+        width: 223px;
+        height: 48px;
+        margin: 0px;
+        margin-top: 27px;
+        font-size: 14px;
+        line-height: 48px;
+        left: 0px;
+      }
+      .body-max > div:nth-of-type(3) > svg {
+        height: 50px;
+        width: 52px;
+      }
+
+      .body1 {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 1198px;
+        margin: 0 auto;
+        height: 460px !important;
+      }
+
+      .body1-1 {
+        width: 20%;
+        height: 460px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+      }
+      .body1-2 {
+        background-color: #b81616;
+        width: 80%;
+        height: 460px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+      }
+      .big {
+        width: 52px;
+        height: 50px;
+        position: relative;
+        line-height: 100%;
+        margin: auto 0px;
+        background-color: white;
+      }
+      .big:hover {
+        background-color: #ff6700;
+        color: white;
+      }
+      .end {
+        display: flex;
+      }
+      svg.bi.bi-search {
+        width: 20px;
+        height: 20px;
+        margin-top: 18px;
+        margin-left: 16px;
+      }
+      body1-1 > div > a {
+        line-height: 100%;
+      }
+      body1-1 > div {
+        width: 234px;
+        height: 42px;
+        background-color: aqua;
+        border: 1px solid;
+      }
+      .c1-1 {
+        width: 234px;
+        height: 42px;
+        background-color: aqua;
+        border: 1px solid;
       }
     </style>
   </head>
   <body>
-    <div class="top-max">
-      <div class="top">
-        <div class="top-1">
-          <a href="javascript:void(0)">小米官网</a>
-          <a href="javascript:void(0)">小米商城</a>
-          <a href="javascript:void(0)">MIUI</a>
-          <a href="javascript:void(0)">IoT</a>
-          <a href="javascript:void(0)">云服务</a>
-          <a href="javascript:void(0)">天星数科</a>
-          <a href="javascript:void(0)">有品</a>
-          <a href="javascript:void(0)">小爱开放平台</a>
-          <a href="javascript:void(0)">资质证照</a>
-          <a href="javascript:void(0)">协议规则</a>
-          <a href="javascript:void(0)">下载app</a>
-          <a href="javascript:void(0)">Select Location</a>
-        </div>
-        <div class="top-2">
-          <a href="javascript:void(0)">登录</a>
-          <a href="javascript:void(0)">注册</a>
-          <a href="javascript:void(0)">消息通知</a>
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-cart-check"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"
-              />
-              <path
-                d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
-              />
-            </svg>
-            <a>购物车<span>（0）</span> </a>
-          </div>
-        </div>
+    <div class="body1">
+      <div class="body1-1">
+        <div class="c1-1"><a href="javascript:void(0)">1</a></div>
+        <div class="c1-1"><a href="javascript:void(0)">2</a></div>
+        <div class="c1-1"><a href="javascript:void(0)">3</a></div>
+        <div class="c1-1"><a href="javascript:void(0)">4</a></div>
+        <div class="c1-1"><a href="javascript:void(0)">5</a></div>
+        <div class="c1-1"><a href="javascript:void(0)">6</a></div>
+        <div class="c1-1"><a href="javascript:void(0)">7</a></div>
+        <div class="c1-1"><a href="javascript:void(0)">8</a></div>
+        <div class="c1-1"><a href="javascript:void(0)">9</a></div>
       </div>
+      <div class="body1-2"></div>
     </div>
   </body>
 </html>

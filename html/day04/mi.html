@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>小米商城 - Xiaomi 13、Redmi K60、MIX FOLD 2，小米电视官方网站</title>
+    <link rel="stylesheet" href="../other/css/bootstrap.min.css" />
+    <link
+      rel="shortcut icon"
+      href="../other/picture/mi.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../other/css/bootstrap.min.css" />
+    <script src="../other/js/jquery.slim.min.js"></script>
+    <script src="../other/js/bootstrap.bundle.min.js"></script>
+    <style>
+      body {
+        font: 14px/1.5 Helvetica Neue, Helvetica, Arial, Microsoft Yahei,
+          Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
+        color: #333;
+        background-color: #fff;
+        min-width: 1226px;
+      }
+      .top-1 {
+        height: 100%;
+        background-color: rgb(51, 51, 51);
+      }
+      .top-2 {
+        width: 304px;
+        height: 100%;
+        background-color: rgb(51, 51, 51);
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+      .top {
+        width: 1198px;
+        height: 40px;
+        background-color: rgb(51, 51, 51);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+      }
+      .top > div > a {
+        text-align: center;
+        color: #b0b0b0;
+        line-height: 40px;
+        display: inline-block;
+        text-decoration: none;
+      }
+      .top > div > a:hover {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .top-1 > a::after {
+        content: '|';
+        color: #424242;
+        margin-left: 5px;
+      }
+      .top-1 > a:last-of-type::after {
+        content: '';
+      }
+      .top-max {
+        background-color: rgb(51, 51, 51);
+      }
+      .top-2 > div {
+        background-color: #424242;
+        display: inline-block;
+        line-height: 100%;
+        color: #b0b0b0;
+        text-decoration: none;
+        margin: auto 0;
+        height: 40px;
+        width: 106px;
+        padding-left: 8px;
+      }
+      .top-1 > a {
+        margin-left: 3px;
+        padding-left: 5px;
+        line-height: 100%;
+      }
+      .top-2 > a {
+        margin-left: 3px;
+        padding-left: 5px;
+        line-height: 100%;
+      }
+      .top-2 > div > div > a {
+        line-height: 40px;
+      }
+      .top-2 > div:hover {
+        cursor: pointer;
+        background-color: #fff;
+        color: #ff6700;
+        outline: 0;
+      }
+
+      .top-2 > div:hover .suspension {
+        animation: run 0.5s ease-out 0s 1;
+        animation-fill-mode: forwards;
+        background-color: white;
+      }
+      .suspension {
+        width: 316px;
+        height: 78px;
+        text-align: center;
+        position: relative;
+        z-index: 999;
+        right: 209px;
+        line-height: 78px;
+        height: 0px;
+        overflow: hidden;
+      }
+
+      @keyframes run {
+        from {
+          height: 0px;
+        }
+        to {
+          height: 78px;
+        }
+      }
+      svg.bi.bi-search {
+        width: 50px;
+        height: 50px;
+        margin: 0px;
+      }
+      .body-max {
+        width: 100%;
+      }
+      .body-max > div {
+        width: 1198px;
+        height: 100px;
+        margin: 0 auto;
+        display: flex;
+      }
+      .body-max > div > img {
+        height: 56px;
+        margin-top: 22px;
+      }
+      .body-max > div > div:nth-last-of-type(2) {
+        width: 60%;
+        height: 100px;
+        text-align: center;
+        display: flex;
+        margin-left: 140px;
+        flex-direction: row;
+        margin-right: 80px;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+      }
+      .body-max > div > div:nth-last-of-type(2) > span {
+        line-height: 100px;
+        font-size: 16px;
+      }
+      .search {
+        z-index: 1;
+        width: 223px;
+        height: 48px;
+        margin: 0px;
+        margin-top: 27px;
+        font-size: 14px;
+        line-height: 48px;
+        left: 0px;
+      }
+      .body-max > div:nth-of-type(3) > svg {
+        height: 50px;
+        width: 52px;
+      }
+
+      .body1 {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 1198px;
+        margin: 0 auto;
+        height: 460px;
+      }
+      .body2 {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 1198px;
+        margin: 0 auto;
+      }
+
+      .body1-1 {
+        width: 20%;
+        height: 460px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        border: 0;
+        color: #fff;
+        background: rgba(105, 101, 101, 0.6);
+      }
+      .body1-2 {
+        width: 80%;
+        height: 460px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+      }
+      .big {
+        width: 52px;
+        height: 50px;
+        position: relative;
+        line-height: 100%;
+        margin: auto 0px;
+        background-color: white;
+      }
+      .big:hover {
+        background-color: #ff6700;
+        color: white;
+      }
+      .end {
+        display: flex;
+      }
+      svg.bi.bi-search {
+        width: 20px;
+        height: 20px;
+        margin-top: 18px;
+        margin-left: 16px;
+      }
+      body1-1 > div > a {
+        line-height: 100%;
+      }
+
+      .c1-1 {
+        width: 100%;
+        height: 42px;
+        background-color: aqua;
+        border: 1px solid;
+      }
+      .body1-1:nth-of-type(1) {
+        padding-top: 18px;
+      }
+      .c1-1 > a {
+        text-decoration: none;
+        margin: 0 auto;
+      }
+      .c1-1:hover {
+        background-color: #ff6700;
+      }
+      .container {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-max">
+      <div class="top">
+        <div class="top-1">
+          <a href="javascript:void(0)">小米官网</a>
+          <a href="javascript:void(0)">小米商城</a>
+          <a href="javascript:void(0)">MIUI</a>
+          <a href="javascript:void(0)">IoT</a>
+          <a href="javascript:void(0)">云服务</a>
+          <a href="javascript:void(0)">天星数科</a>
+          <a href="javascript:void(0)">有品</a>
+          <a href="javascript:void(0)">小爱开放平台</a>
+          <a href="javascript:void(0)">资质证照</a>
+          <a href="javascript:void(0)">协议规则</a>
+          <a href="javascript:void(0)">下载app</a>
+          <a href="javascript:void(0)">Select Location</a>
+        </div>
+        <div class="top-2">
+          <a href="javascript:void(0)">登录</a>
+          <a href="javascript:void(0)">注册</a>
+          <a href="javascript:void(0)">消息通知</a>
+          <div>
+            <div>
+              <a>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-cart-check"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"
+                  />
+                  <path
+                    d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+                  /></svg
+                >购物车
+                <span>（0）</span>
+              </a>
+              <div class="suspension" style="color: #424242">
+                <div class="msg">购物车中还没有商品，赶紧选购吧！</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="body-max">
+      <div class="menu">
+        <img src="../other/picture/logo-mi2.png" alt="" />
+        <div>
+          <span>Xiaomi手机</span>
+          <span>Redmi手机</span>
+          <span>电视</span>
+          <span>笔记本</span>
+          <span>平板</span>
+          <span>家电</span>
+          <span>路由器</span>
+          <span>服务中心</span>
+          <span>社区</span>
+        </div>
+        <div class="end">
+          <input
+            type="search"
+            value=""
+            class="search"
+            placeholder="笔记本电脑"
+          />
+          <div class="big">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-search"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="body1">
+      <div class="body1-1">
+        <div class="c1-1"><a href="javascript:void(0)">手机</a></div>
+        <div class="c1-1"><a href="javascript:void(0)">手机</a></div>
+        <div class="c1-1"><a href="javascript:void(0)">手机</a></div>
+        <div class="c1-1"><a href="javascript:void(0)">手机</a></div>
+        <div class="c1-1"><a href="javascript:void(0)">手机</a></div>
+        <div class="c1-1"><a href="javascript:void(0)">手机</a></div>
+        <div class="c1-1"><a href="javascript:void(0)">手机</a></div>
+        <div class="c1-1"><a href="javascript:void(0)">手机</a></div>
+        <div class="c1-1"><a href="javascript:void(0)">手机</a></div>
+      </div>
+      <div class="body1-2">
+        <div class="container">
+          <!-- 轮播图容器 start-->
+          <div
+            id="carouselExampleControls"
+            class="carousel slide"
+            data-ride="carousel"
+          >
+            <!-- 圆点 start -->
+            <ol class="carousel-indicators">
+              <!-- data-target 表示链接到的轮播图容器的 id -->
+              <li
+                data-target="#carouselExampleControls"
+                data-slide-to="0"
+                class="active"
+              ></li>
+              <li data-target="#carouselExampleControls" data-slide-to="1"></li>
+              <li data-target="#carouselExampleControls" data-slide-to="2"></li>
+            </ol>
+            <!-- 圆点 end -->
+            <!-- 轮播元素 start -->
+            <div class="carousel-inner">
+              <!-- item start -->
+              <div class="carousel-item active" data-interval="1000">
+                <img
+                  src="../other/picture/lb1.webp"
+                  class="d-block w-100"
+                  alt="..."
+                />
+              </div>
+              <!-- item start -->
+              <div class="carousel-item" data-interval="2000">
+                <img
+                  src="../other/picture/lb2.webp"
+                  class="d-block w-100"
+                  alt="..."
+                />
+              </div>
+              <img
+                src="../other/picture/lb3.jpeg"
+                class="d-block w-100"
+                alt="..."
+              />
+              <div class="carousel-item item-box" data-interval="2000">
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+              </div>
+            </div>
+            <!-- 轮播元素 end -->
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-target="#carouselExampleControls"
+              data-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-target="#carouselExampleControls"
+              data-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Next</span>
+            </button>
+          </div>
+          <!-- 轮播图容器 end-->
+        </div>
+      </div>
+    </div>
+    <div class="body2">
+      <div></div>
+      <img src="../other/picture/gd1.jpeg" alt="" />
+      <img src="../other/picture/gd2.jpg" alt="" />
+      <img src="../other/picture/gd3.png" alt="" />
+    </div>
+  </body>
+</html>
