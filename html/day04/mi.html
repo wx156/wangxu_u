@@ -18,8 +18,14 @@
         font: 14px/1.5 Helvetica Neue, Helvetica, Arial, Microsoft Yahei,
           Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
         color: #333;
-        background-color: #fff;
+        background-color: rgb(231, 233, 234);
         min-width: 1226px;
+      }
+      .blank-img:hover {
+        text-decoration: none;
+        cursor: pointer;
+        transform: translateZ(2px);
+        box-shadow: 2px 2px 2px #b0b0b0;
       }
       .top-1 {
         height: 100%;
@@ -186,6 +192,7 @@
         flex-wrap: nowrap;
         width: 1198px;
         margin: 0 auto;
+        margin-top: 4px;
       }
 
       .body1-1 {
@@ -239,7 +246,7 @@
         border: 1px solid;
       }
       .body1-1:nth-of-type(1) {
-        padding-top: 18px;
+        padding-top: 12px;
       }
       .c1-1 > a {
         text-decoration: none;
@@ -250,6 +257,90 @@
       }
       .container {
         height: 100%;
+      }
+      .body2 > img {
+        width: 316px;
+        height: 170px;
+        margin: 0px 4px;
+      }
+      .main {
+        height: 614px;
+        width: 1198px;
+        display: flex;
+        flex-direction: row;
+        margin: auto;
+        flex-wrap: nowrap;
+      }
+      .main > div:nth-of-type(1) {
+        height: 614px;
+        width: 234px;
+        display: flex;
+      }
+      .main > div:nth-of-type(2) {
+        height: 614px;
+        width: max-content;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        font: 14px/1.5 Helvetica Neue, Helvetica, Arial, Microsoft Yahei,
+          Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
+      }
+      .min {
+        height: 300px;
+        width: 234px;
+        display: flex;
+        background-color: white;
+        flex-direction: column;
+        flex-wrap: wrap;
+        margin-left: 2px;
+      }
+
+      h2 {
+        width: 1198px;
+        flex-direction: row;
+        margin: auto;
+        margin-top: 50px;
+        flex-wrap: nowrap;
+      }
+      .main > div:nth-of-type(2) img {
+        width: 160px;
+        height: 160px;
+        margin: 0px auto;
+        margin-top: 20px;
+      }
+
+      div > div:nth-of-type(2) > .min:hover {
+        text-decoration: none;
+        cursor: pointer;
+        transform: translateZ(2px);
+        box-shadow: 2px 2px 2px #b0b0b0;
+      }
+      .one :hover {
+        text-decoration: none;
+        cursor: pointer;
+        transform: translateZ(2px);
+        box-shadow: 2px 2px 2px #b0b0b0;
+      }
+      h3 {
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        margin-top: 0px;
+        font-size: 16px;
+      }
+      .price {
+        text-align: center;
+        color: #ff6700;
+      }
+      .price del {
+        color: #b0b0b0;
+        list-style-type: none;
+      }
+      .desc {
+        text-align: center;
+        margin: 0;
+        color: #b0b0b0;
       }
     </style>
   </head>
@@ -433,9 +524,113 @@
     </div>
     <div class="body2">
       <div></div>
-      <img src="../other/picture/gd1.jpeg" alt="" />
-      <img src="../other/picture/gd2.jpg" alt="" />
-      <img src="../other/picture/gd3.png" alt="" />
+      <img src="../other/picture/gd1.jpeg" alt="" class="blank-img" />
+      <img src="../other/picture/gd2.jpg" alt="" class="blank-img" />
+      <img src="../other/picture/gd3.png" alt="" class="blank-img" />
+    </div>
+    <h2>手机</h2>
+    <div class="main">
+      <div class="one">
+        <img src="../other/picture/001.webp" alt="" />
+      </div>
+      <div>
+        <div class="min">
+          <img src="../other/picture/01.webp" alt="" />
+          <h3>Redmi Note 13 Pro</h3>
+          <p class="desc">小金刚品质</p>
+          <p class="price">
+            <span class="num">1399</span>
+            元
+            <span>起</span>
+            <del>
+              <span class="num">1499</span>
+              元
+            </del>
+          </p>
+        </div>
+        <div class="min">
+          <img src="../other/picture/02.webp" alt="" />
+          <h3>Redmi Note 13 Pro+</h3>
+          <p class="desc">天玑 7200-Ultra 处理器</p>
+          <p class="price">
+            <span class="num">1899</span>
+            元
+            <span>起</span>
+            <del>
+              <span class="num">1999</span>
+              元
+            </del>
+          </p>
+        </div>
+        <div class="min">
+          <img src="../other/picture/03.webp" alt="" />
+          <h3>Redmi Note 13 5G</h3>
+          <p class="desc">一亿像素 更快更清晰</p>
+          <p class="price">
+            <span class="num">1099</span>
+            元
+            <span>起</span>
+            <del>
+              <span class="num">1199</span>
+              元
+            </del>
+          </p>
+        </div>
+        <div class="min">
+          <img src="../other/picture/04.webp" alt="" />
+          <h3>Xiaomi MIX Fold 3</h3>
+          <p class="desc">轻薄折叠屏丨徕卡光学丨全焦段四摄</p>
+          <p class="price">
+            <span class="num">8999</span>
+            元
+            <span>起</span>
+          </p>
+        </div>
+        <div class="min">
+          <img src="../other/picture/05.webp" alt="" />
+          <h3>Redmi K60 至尊版</h3>
+          <p class="desc">旗舰体验全面超预期</p>
+          <p class="price">
+            <span class="num">2599</span>
+            元
+            <span>起</span>
+          </p>
+        </div>
+        <div class="min">
+          <img src="../other/picture/06.webp" alt="" />
+          <h3>Redmi 12 5G</h3>
+          <p class="desc">5G 骁龙芯，大屏大电量</p>
+          <p class="price">
+            <span class="num">949</span>
+            元
+            <span>起</span>
+          </p>
+        </div>
+        <div class="min">
+          <img src="../other/picture/07.webp" alt="" />
+          <h3>Redmi Note 12T Pro</h3>
+          <p class="desc">年度 LCD 屏幕之光</p>
+          <p class="price">
+            <span class="num">1499</span>
+            元
+            <span>起</span>
+            <del>
+              <span class="num">1599</span>
+              元
+            </del>
+          </p>
+        </div>
+        <div class="min">
+          <img src="../other/picture/08.webp" alt="" />
+          <h3>Xiaomi Civi 3</h3>
+          <p class="desc">仿生双眸 天生出色</p>
+          <p class="price">
+            <span class="num">2499</span>
+            元
+            <span>起</span>
+          </p>
+        </div>
+      </div>
     </div>
   </body>
 </html>
