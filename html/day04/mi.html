@@ -159,9 +159,14 @@
         flex-wrap: nowrap;
         justify-content: space-around;
       }
-      .body-max > div > div:nth-last-of-type(2) > span {
+      .body-max > div > div:nth-last-of-type(2) > a {
         line-height: 100px;
         font-size: 16px;
+        text-decoration: none;
+        color: black;
+      }
+      .body-max > div > div:nth-last-of-type(2) > a:hover {
+        color: #ff6700;
       }
       .search {
         z-index: 1;
@@ -196,8 +201,9 @@
       }
 
       .body1-1 {
-        width: 20%;
-        height: 460px;
+        margin-top: 4px;
+        width: 210px;
+        height: 450px;
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
@@ -205,9 +211,17 @@
         border: 0;
         color: #fff;
         background: rgba(105, 101, 101, 0.6);
+        position: absolute;
+        z-index: 1;
+      }
+      .carousel-control-prev {
+        left: 151px;
+      }
+      .bbd {
+        display: flex;
       }
       .body1-2 {
-        width: 80%;
+        width: 1198px;
         height: 460px;
         display: flex;
         flex-direction: column;
@@ -242,18 +256,23 @@
       .c1-1 {
         width: 100%;
         height: 42px;
-        background-color: aqua;
-        border: 1px solid;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
       }
-      .body1-1:nth-of-type(1) {
-        padding-top: 12px;
-      }
+
       .c1-1 > a {
         text-decoration: none;
-        margin: 0 auto;
+        margin-left: 36px;
+        color: white;
+      }
+      .c1-1 > span {
+        margin-right: 20px;
       }
       .c1-1:hover {
         background-color: #ff6700;
+        cursor: pointer;
       }
       .container {
         height: 100%;
@@ -342,6 +361,51 @@
         margin: 0;
         color: #b0b0b0;
       }
+      #connna {
+        left: 209px;
+        background-color: white;
+        border: 1px solid;
+        width: 0px;
+        overflow: hidden;
+        z-index: 2;
+      }
+      #connna > div:hover {
+        cursor: pointer;
+        color: #ff6700;
+        text-decoration: none;
+      }
+      #connna > div > a > span {
+        text-decoration: nones;
+        color: black;
+      }
+      #connna > div > a {
+        text-decoration: none;
+      }
+      #connna > div > a > img {
+        margin-left: 20px;
+      }
+      .carousel-control-prev {
+        z-index: 0;
+      }
+
+      .body1-1:nth-of-type(1):hover .body1-1:nth-of-type(10) {
+        animation: runn 0s ease-out 0s 1;
+        animation-fill-mode: forwards;
+      }
+      @keyframes runn {
+        from {
+          width: 0px;
+        }
+        to {
+          width: 210px;
+        }
+      }
+      .n221px {
+        width: 100%;
+        height: 221px;
+        background-color: aquamarine;
+        position: relative;
+      }
     </style>
   </head>
   <body>
@@ -397,15 +461,16 @@
       <div class="menu">
         <img src="../other/picture/logo-mi2.png" alt="" />
         <div>
-          <span>Xiaomi手机</span>
-          <span>Redmi手机</span>
-          <span>电视</span>
-          <span>笔记本</span>
-          <span>平板</span>
-          <span>家电</span>
-          <span>路由器</span>
-          <span>服务中心</span>
-          <span>社区</span>
+          <a href="javascript:void(0)">Xiaomi手机</a>
+          <a href="javascript:void(0)">Redmi手机</a>
+          <a href="javascript:void(0)">电视</a>
+          <a href="javascript:void(0)">笔记本</a>
+          <a href="javascript:void(0)">平板</a>
+          <a href="javascript:void(0)">家电</a>
+          <a href="javascript:void(0)">路由器</a>
+          <a href="javascript:void(0)">服务中心</a>
+          <a href="javascript:void(0)">社区</a>
+          <div class="n221px"></div>
         </div>
         <div class="end">
           <input
@@ -432,98 +497,161 @@
       </div>
     </div>
     <div class="body1">
-      <div class="body1-1">
-        <div class="c1-1"><a href="javascript:void(0)">手机</a></div>
-        <div class="c1-1"><a href="javascript:void(0)">手机</a></div>
-        <div class="c1-1"><a href="javascript:void(0)">手机</a></div>
-        <div class="c1-1"><a href="javascript:void(0)">手机</a></div>
-        <div class="c1-1"><a href="javascript:void(0)">手机</a></div>
-        <div class="c1-1"><a href="javascript:void(0)">手机</a></div>
-        <div class="c1-1"><a href="javascript:void(0)">手机</a></div>
-        <div class="c1-1"><a href="javascript:void(0)">手机</a></div>
-        <div class="c1-1"><a href="javascript:void(0)">手机</a></div>
+      <div class="bbd">
+        <div class="body1-1">
+          <div class="c1-1">
+            <a href="javascript:void(0)">手机</a><span>></span>
+          </div>
+          <div class="c1-1">
+            <a href="javascript:void(0)">手机</a><span>></span>
+          </div>
+          <div class="c1-1">
+            <a href="javascript:void(0)">手机</a><span>></span>
+          </div>
+          <div class="c1-1">
+            <a href="javascript:void(0)">手机</a><span>></span>
+          </div>
+          <div class="c1-1">
+            <a href="javascript:void(0)">手机</a><span>></span>
+          </div>
+          <div class="c1-1">
+            <a href="javascript:void(0)">手机</a><span>></span>
+          </div>
+          <div class="c1-1">
+            <a href="javascript:void(0)">手机</a><span>></span>
+          </div>
+          <div class="c1-1">
+            <a href="javascript:void(0)">手机</a><span>></span>
+          </div>
+          <div class="c1-1">
+            <a href="javascript:void(0)">手机</a><span>></span>
+          </div>
+          <div class="body1-1" id="connna">
+            <div>
+              <a href="https://www.baidu.com/"
+                ><img src="../other/picture/x1.webp" alt="" /><span
+                  >Xiaomi MIX系列</span
+                ></a
+              >
+            </div>
+            <div>
+              <a href="https://www.baidu.com/"
+                ><img src="../other/picture/x1.webp" alt="" /><span
+                  >Xiaomi MIX系列</span
+                ></a
+              >
+            </div>
+            <div>
+              <a href="https://www.baidu.com/"
+                ><img src="../other/picture/x1.webp" alt="" /><span
+                  >Xiaomi MIX系列</span
+                ></a
+              >
+            </div>
+            <div>
+              <a href="https://www.baidu.com/"
+                ><img src="../other/picture/x1.webp" alt="" /><span
+                  >Xiaomi MIX系列</span
+                ></a
+              >
+            </div>
+            <div>
+              <a href="https://www.baidu.com/"
+                ><img src="../other/picture/x1.webp" alt="" /><span
+                  >Xiaomi MIX系列</span
+                ></a
+              >
+            </div>
+            <div>
+              <a href="https://www.baidu.com/"
+                ><img src="../other/picture/x1.webp" alt="" /><span
+                  >Xiaomi MIX系列</span
+                ></a
+              >
+            </div>
+          </div>
+        </div>
       </div>
       <div class="body1-2">
-        <div class="container">
-          <!-- 轮播图容器 start-->
-          <div
-            id="carouselExampleControls"
-            class="carousel slide"
-            data-ride="carousel"
-          >
-            <!-- 圆点 start -->
-            <ol class="carousel-indicators">
-              <!-- data-target 表示链接到的轮播图容器的 id -->
-              <li
-                data-target="#carouselExampleControls"
-                data-slide-to="0"
-                class="active"
-              ></li>
-              <li data-target="#carouselExampleControls" data-slide-to="1"></li>
-              <li data-target="#carouselExampleControls" data-slide-to="2"></li>
-            </ol>
-            <!-- 圆点 end -->
-            <!-- 轮播元素 start -->
-            <div class="carousel-inner">
-              <!-- item start -->
-              <div class="carousel-item active" data-interval="1000">
-                <img
-                  src="../other/picture/lb1.webp"
-                  class="d-block w-100"
-                  alt="..."
-                />
-              </div>
-              <!-- item start -->
-              <div class="carousel-item" data-interval="2000">
-                <img
-                  src="../other/picture/lb2.webp"
-                  class="d-block w-100"
-                  alt="..."
-                />
-              </div>
+        <!-- 轮播图容器 start-->
+        <div
+          id="carouselExampleControls"
+          class="carousel slide"
+          data-ride="carousel"
+        >
+          <!-- 圆点 start -->
+          <ol class="carousel-indicators">
+            <!-- data-target 表示链接到的轮播图容器的 id -->
+            <li
+              data-target="#carouselExampleControls"
+              data-slide-to="0"
+              class="active"
+            ></li>
+            <li data-target="#carouselExampleControls" data-slide-to="1"></li>
+            <li data-target="#carouselExampleControls" data-slide-to="2"></li>
+          </ol>
+          <!-- 圆点 end -->
+          <!-- 轮播元素 start -->
+          <div class="carousel-inner">
+            <!-- item start -->
+            <div class="carousel-item active" data-interval="1000">
               <img
-                src="../other/picture/lb3.jpeg"
+                src="../other/picture/lb1.webp"
                 class="d-block w-100"
                 alt="..."
               />
-              <div class="carousel-item item-box" data-interval="2000">
-                <div class="item"></div>
-                <div class="item"></div>
-                <div class="item"></div>
-              </div>
             </div>
-            <!-- 轮播元素 end -->
-            <button
-              class="carousel-control-prev"
-              type="button"
-              data-target="#carouselExampleControls"
-              data-slide="prev"
-            >
-              <span
-                class="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="sr-only">Previous</span>
-            </button>
-            <button
-              class="carousel-control-next"
-              type="button"
-              data-target="#carouselExampleControls"
-              data-slide="next"
-            >
-              <span
-                class="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="sr-only">Next</span>
-            </button>
+            <!-- item start -->
+            <div class="carousel-item" data-interval="2000">
+              <img
+                src="../other/picture/lb2.webp"
+                class="d-block w-100"
+                alt="..."
+              />
+            </div>
+            <img
+              src="../other/picture/lb3.jpeg"
+              class="d-block w-100"
+              alt="..."
+            />
+            <div class="carousel-item item-box" data-interval="2000">
+              <div class="item"></div>
+              <div class="item"></div>
+              <div class="item"></div>
+            </div>
           </div>
-          <!-- 轮播图容器 end-->
+          <!-- 轮播元素 end -->
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-target="#carouselExampleControls"
+            data-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-target="#carouselExampleControls"
+            data-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </button>
         </div>
+        <!-- 轮播图容器 end-->
       </div>
     </div>
     <div class="body2">
-      <div></div>
+      <div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
       <img src="../other/picture/gd1.jpeg" alt="" class="blank-img" />
       <img src="../other/picture/gd2.jpg" alt="" class="blank-img" />
       <img src="../other/picture/gd3.png" alt="" class="blank-img" />
