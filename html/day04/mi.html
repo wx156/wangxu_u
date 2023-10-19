@@ -194,7 +194,7 @@
       .body2 {
         display: flex;
         flex-direction: row;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         width: 1198px;
         margin: 0 auto;
         margin-top: 4px;
@@ -400,11 +400,43 @@
           width: 210px;
         }
       }
-      .n221px {
-        width: 100%;
-        height: 221px;
-        background-color: aquamarine;
-        position: relative;
+      .body2 > div {
+        display: flex;
+        width: 226px;
+        height: 170px;
+        background-color: #5f5750;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+      }
+      .body2 > div > div {
+        width: 57px;
+        height: 82px;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        margin-top: 4px;
+      }
+      .body2 > div > div > img {
+        width: 24px;
+        height: 24px;
+        margin: 0 auto;
+      }
+      .note {
+        width: 100% !important;
+        height: 120px;
+        margin: 0 auto;
+        padding-top: 20px;
+      }
+      .right {
+        position: fixed;
+        width: 84px;
+        height: 453px;
+        background-color: black;
+      }
+      .right > div {
+        width: 100px;
+        height: 91px;
       }
     </style>
   </head>
@@ -470,7 +502,6 @@
           <a href="javascript:void(0)">路由器</a>
           <a href="javascript:void(0)">服务中心</a>
           <a href="javascript:void(0)">社区</a>
-          <div class="n221px"></div>
         </div>
         <div class="end">
           <input
@@ -645,16 +676,134 @@
     </div>
     <div class="body2">
       <div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div>
+          <img src="../other/picture/x1.png" alt="" /><span>保障服务</span>
+        </div>
+        <div>
+          <img src="../other/picture/x2.png" alt="" /><span>保障服务</span>
+        </div>
+        <div>
+          <img src="../other/picture/x3.png" alt="" /><span>保障服务</span>
+        </div>
+        <div>
+          <img src="../other/picture/x4.png" alt="" /><span>保障服务</span>
+        </div>
+        <div>
+          <img src="../other/picture/x5.png" alt="" /><span>保障服务</span>
+        </div>
+        <div>
+          <img src="../other/picture/x6.png" alt="" /><span>保障服务</span>
+        </div>
       </div>
       <img src="../other/picture/gd1.jpeg" alt="" class="blank-img" />
       <img src="../other/picture/gd2.jpg" alt="" class="blank-img" />
       <img src="../other/picture/gd3.png" alt="" class="blank-img" />
+      <img src="../other/picture/big_note13.webp" alt="" class="note" />
+    </div>
+
+    <h2>手机</h2>
+    <div class="main">
+      <div class="one">
+        <img src="../other/picture/001.webp" alt="" />
+      </div>
+      <div>
+        <div class="min">
+          <img src="../other/picture/01.webp" alt="" />
+          <h3>Redmi Note 13 Pro</h3>
+          <p class="desc">小金刚品质</p>
+          <p class="price">
+            <span class="num">1399</span>
+            元
+            <span>起</span>
+            <del>
+              <span class="num">1499</span>
+              元
+            </del>
+          </p>
+        </div>
+        <div class="min">
+          <img src="../other/picture/02.webp" alt="" />
+          <h3>Redmi Note 13 Pro+</h3>
+          <p class="desc">天玑 7200-Ultra 处理器</p>
+          <p class="price">
+            <span class="num">1899</span>
+            元
+            <span>起</span>
+            <del>
+              <span class="num">1999</span>
+              元
+            </del>
+          </p>
+        </div>
+        <div class="min">
+          <img src="../other/picture/03.webp" alt="" />
+          <h3>Redmi Note 13 5G</h3>
+          <p class="desc">一亿像素 更快更清晰</p>
+          <p class="price">
+            <span class="num">1099</span>
+            元
+            <span>起</span>
+            <del>
+              <span class="num">1199</span>
+              元
+            </del>
+          </p>
+        </div>
+        <div class="min">
+          <img src="../other/picture/04.webp" alt="" />
+          <h3>Xiaomi MIX Fold 3</h3>
+          <p class="desc">轻薄折叠屏丨徕卡光学丨全焦段四摄</p>
+          <p class="price">
+            <span class="num">8999</span>
+            元
+            <span>起</span>
+          </p>
+        </div>
+        <div class="min">
+          <img src="../other/picture/05.webp" alt="" />
+          <h3>Redmi K60 至尊版</h3>
+          <p class="desc">旗舰体验全面超预期</p>
+          <p class="price">
+            <span class="num">2599</span>
+            元
+            <span>起</span>
+          </p>
+        </div>
+        <div class="min">
+          <img src="../other/picture/06.webp" alt="" />
+          <h3>Redmi 12 5G</h3>
+          <p class="desc">5G 骁龙芯，大屏大电量</p>
+          <p class="price">
+            <span class="num">949</span>
+            元
+            <span>起</span>
+          </p>
+        </div>
+        <div class="min">
+          <img src="../other/picture/07.webp" alt="" />
+          <h3>Redmi Note 12T Pro</h3>
+          <p class="desc">年度 LCD 屏幕之光</p>
+          <p class="price">
+            <span class="num">1499</span>
+            元
+            <span>起</span>
+            <del>
+              <span class="num">1599</span>
+              元
+            </del>
+          </p>
+        </div>
+        <div class="min">
+          <img src="../other/picture/08.webp" alt="" />
+          <h3>Xiaomi Civi 3</h3>
+          <p class="desc">仿生双眸 天生出色</p>
+          <p class="price">
+            <span class="num">2499</span>
+            元
+            <span>起</span>
+          </p>
+        </div>
+      </div>
     </div>
     <h2>手机</h2>
     <div class="main">
@@ -759,6 +908,14 @@
           </p>
         </div>
       </div>
+    </div>
+    <div class="right">
+      111111111111111111111111111111111111111
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
   </body>
 </html>

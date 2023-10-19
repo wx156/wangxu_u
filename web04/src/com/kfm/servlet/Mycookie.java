@@ -17,5 +17,9 @@ public class Mycookie extends HttpServlet {
         resp.setContentType("text/plain;charset=utf-8");
         Cookie cookie = new Cookie("kfm","wwww");
         resp.addCookie(cookie);
+        Cookie[] cookies = req.getCookies();
+        for (Cookie cookie1 : cookies){
+            System.out.println(cookie1.getValue());
+        }
     }
 }
