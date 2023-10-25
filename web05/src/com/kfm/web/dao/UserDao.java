@@ -22,4 +22,8 @@ public class UserDao {
         String sql = "select id, username, name from user where username = ? and password = ?";
         return db.selectOne(sql, User.class, username, password);
     }
+    public User selectByUsername(String username) throws SQLException {
+        String sql = "select id, username, name from user where username = ?";
+        return db.selectOne(sql, User.class,username);
+    }
 }

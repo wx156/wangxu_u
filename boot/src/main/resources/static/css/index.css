@@ -24,7 +24,6 @@ body {
 .form-group label {
     display: block;
     font-weight: bold;
-    width: 140px;
 }
 .form-group input {
     width: 100%;
@@ -52,17 +51,8 @@ body {
 .form-group input[type="submit"]:hover {
     background-color: #0056b3;
 }
-.form-last {
-    background-color: #007bff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    display: flex;
-}
-.form-last > a{
-    text-decoration: none;
-    color: #fff;
-    width: 100%;
-    text-align: center;
+.error{
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
 }
