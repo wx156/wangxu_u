@@ -1,0 +1,6 @@
+# 注释
+
+# 修改服务器端口
+server.port=8888
+# 修改上下文路径
+server.servlet.context-path=/boot

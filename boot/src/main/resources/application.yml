@@ -1,0 +1,13 @@
+
+
+# 修改服务器端口
+server:
+  port: 8080
+  servlet:
+    context-path: /springboot
+
+# 热部署
+spring:
+  devtools:
+    restart:
+      enabled: true
