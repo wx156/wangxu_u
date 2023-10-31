@@ -99,4 +99,15 @@ public class FileService {
 
         return date + "/" + fileName + substring;
     }
+
+    public int deleteById(int id) throws ServiceException, SQLException {
+        if (ObjectUtils.isEmpty(id) || id <= 0){
+            throw new ServiceException("参数异常");
+        }
+        int delete = fileDao.deleteById(id);
+        if (delete != 1){
+            throw new ServiceException("删除失败");
+        }
+        return delete;
+    }
 }

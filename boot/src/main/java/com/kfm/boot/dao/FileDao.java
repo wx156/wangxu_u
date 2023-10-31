@@ -79,4 +79,11 @@ public class FileDao {
         }
         return db.selectCount(sql.toString(), param.toArray());
     }
+
+    public int deleteById(int id) throws SQLException {
+
+        String sql = "delete from file where id = ?";
+        return db.update(sql, id);
+    }
+
 }

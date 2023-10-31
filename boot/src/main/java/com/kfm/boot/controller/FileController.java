@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @RequestMapping("/file") // 通过这里配置使下面的映射都在 /file 下
@@ -56,6 +57,18 @@ public class FileController {
                 mv.setViewName("file/add");
             }
         }
+        return mv;
+    }
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable("id") Integer id) throws ServiceException, SQLException {
+
+        int delete = fileService.deleteById(id);
+        if (delete == 0) {
+            throw new ServiceException("删除失败");
+        }
+        ModelAndView mv = new ModelAndView("redirect:/file/list");
+        mv.addObject("message","删除成功！");
+        System.out.println("删除文件：" + id + "成功");
         return mv;
     }
 }
