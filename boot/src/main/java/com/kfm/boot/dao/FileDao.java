@@ -24,28 +24,27 @@ public class FileDao {
         //fileModel.getName() != null && !"".equals(fileModel.getName().trim())
         StringBuilder where = new StringBuilder();
         List param = new ArrayList();
-        if (StringUtils.hasText(fileModel.getName())){
-            where.append(" where name = ?");
-            param.add(fileModel.getName());
+        if (StringUtils.hasText(fileModel.getName())) {
+            where.append(" where name LIKE ?");
+            param.add("%" + fileModel.getName() + "%");
         }
 
-        if (!ObjectUtils.isEmpty(fileModel.getSearchDate())){
+        if (!ObjectUtils.isEmpty(fileModel.getSearchDate())) {
             // 如果没有传 name
-            if (where.length() == 0){
+            if (where.isEmpty()) {
                 where.append(" where DATE(create_time) = ?");
             } else {
                 where.append(" and DATE(create_time) = ?");
             }
             param.add(fileModel.getSearchDate());
         }
-        if (where.length() > 0){
+        if (!where.isEmpty()) {
             sql.append(where);
         }
 
         sql.append(" limit ?, ?");
         param.add((pageNum - 1) * pageSize);
         param.add(pageSize);
-
 
 
         return db.selectList(sql.toString(), FileModel.class, param.toArray());
