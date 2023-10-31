@@ -15,7 +15,7 @@ import java.net.http.HttpResponse;
 public class CaptchaController {
     @RequestMapping("/captcha")
     public void captcha(HttpServletRequest request , HttpServletResponse response) throws IOException {
-        GifCaptcha gifCaptcha = new GifCaptcha(100, 30);
+        GifCaptcha gifCaptcha = new GifCaptcha(100, 30,3);
         CaptchaUtil.out(gifCaptcha,request,response);
     }
 }

@@ -81,7 +81,7 @@ public class MD5Util {
     }
 
     public static void main(String[] args) {
-        String md5 = md5(md5("123456", "admin"));
+        String md5 = md5(md5("123", "kaifamiao"));
         System.out.println(md5);
     }
 }

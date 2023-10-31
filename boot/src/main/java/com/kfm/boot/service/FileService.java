@@ -6,6 +6,7 @@ import com.kfm.boot.ex.ServiceException;
 import com.kfm.boot.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -21,16 +23,30 @@ public class FileService {
     @Autowired
     private FileDao fileDao;
 
-    public List<FileModel> list(){
+    public List<FileModel> list(FileModel fileModel,int pageNum,int pageSize) throws ServiceException {
+        if (ObjectUtils.isEmpty(fileModel)){
+            throw  new ServiceException("参数不能为空");
+        }
         try {
-            return fileDao.selectAll();
+            return fileDao.selectAll(fileModel,pageNum,pageSize);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
+    public int getTotal(FileModel fileModel) throws ServiceException {
+        if (ObjectUtils.isEmpty(fileModel)){
+            throw new ServiceException("fileModel 参数不能为空");
+        }
+        try {
+            return fileDao.getTotal(fileModel);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 
-    public void save(MultipartFile file, Integer id) throws ServiceException {
+    public String save(MultipartFile file, Integer id) throws ServiceException {
 
         try {
             // 保存文件
@@ -44,6 +60,7 @@ public class FileService {
             model.setPath("/upload/" + path);
             model.setCreateUser(id);
             fileDao.insert(model);
+            return model.getPath();
         } catch (IOException e) {
             throw new ServiceException("文件保存失败", e);
         } catch (SQLException e) {
@@ -82,6 +99,4 @@ public class FileService {
 
         return date + "/" + fileName + substring;
     }
-
-
 }

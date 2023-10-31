@@ -349,6 +349,29 @@ public class DBHelper {
 
         return list;
     }
+    public int selectCount(String sql, Object... params) throws SQLException {
+        // 获取连接
+        getConnection();
+
+        // 创建 prepareStatement
+        ps = conn.prepareStatement(sql);
+
+        // 设置值
+        if (params != null){
+            for (int i = 0; i < params.length; i++) {
+                ps.setObject(i + 1, params[i]);
+            }
+        }
+
+        // 执行操作
+        rs = ps.executeQuery();
+
+        // 解析结果
+        if (rs.next()){
+            return rs.getInt(1);
+        }
+        return 0;
+    }
 
 }
 

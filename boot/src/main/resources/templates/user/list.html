@@ -63,7 +63,7 @@
     <td th:text="${user.name}"></td>
     <td class="table-button">
       <a th:href="@{/user/edit(id=${user.id})}">修改</a>
-      <a href="">删除</a>
+      <a th:href="@{/user/delete/{id}(id=${user.id})}">删除</a>
     </td>
   </tr>
   <!-- 添加更多用户行 -->

@@ -49,12 +49,49 @@
       height: 100px;
       border-radius: 50%;
     }
+
+    tfoot{
+      text-align: center;
+
+    }
+
+    tfoot a{
+      text-decoration: none;
+      margin: 5px 10px;
+      color: #007bff;
+    }
+
+    tfoot a:hover{
+      text-decoration: underline;
+      color: #209a22;
+    }
+
+    tfoot a:visited{
+      color: #007bff;
+    }
+
+    tfoot a.current_page{
+      color: black;
+    }
+
+    tfoot a.current_page:hover{
+      color: black;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
 <h1>文件列表</h1>
 <a th:href="@{/file/add}">上传文件</a>
 <span class="error" th:text="${message}"></span>
+<!-- 条件查询表单 -->
+<form th:action="@{/file/list}" method="get">
+  <input type="text" name="name" placeholder="请输入文件名" th:value="${search.name}"/>
+
+  <input type="date" name="searchDate" placeholder="上传时间" th:value="${search.searchDate}">
+
+  <input type="submit" value="搜索">
+</form>
 <table>
   <thead>
   <tr>
@@ -67,7 +104,10 @@
   </tr>
   </thead>
   <tbody>
-  <tr th:each="file, stat : ${list}">
+  <tr th:if="${page.data.size() == 0}">
+    <td colspan="6">暂无数据</td>
+  </tr>
+  <tr th:if="${page.data.size() > 0}" th:each="file, stat : ${page.data}">
     <td th:text="${stat.count}"></td>
     <td class="img"><img th:src="@{${file.path}}" /></td>
     <td th:text="${file.name}"></td>
@@ -79,6 +119,33 @@
   </tr>
   <!-- 添加更多用户行 -->
   </tbody>
+
+  <tfoot th:if="${page.data.size() > 0 and page.totalPage > 1}">
+  <tr>
+    <th colspan="6">
+        <span th:if="${page.hasPrePage}">
+            <a th:href="@{/file/list(p=${page.prePage},s=${page.pageSize},name=${search.name},searchDate=${search.searchDate})}">上一页</a>
+        </span>
+
+      <span th:if="!${page.hasPrePage}">
+            上一页
+        </span>
+      <!--     循环页码   -->
+      <span th:each="num : ${page.pageNumbers}">
+           <a th:if="${num == page.pageNum}" th:text="${num}" class="current_page"></a>
+           <a th:if="${num != page.pageNum}" th:href="@{/file/list(p=${num},s=${page.pageSize},name=${search.name},searchDate=${search.searchDate})}" th:text="${num}"></a>
+        </span>
+
+      <span th:if="${page.hasNextPage}">
+            <a th:href="@{/file/list(p=${page.nextPage},s=${page.pageSize},name=${search.name},searchDate=${search.searchDate})}">下一页</a>
+        </span>
+
+      <span th:if="!${page.hasNextPage}">
+            下一页
+        </span>
+    </th>
+  </tr>
+  </tfoot>
 </table>
 </body>
 </html>

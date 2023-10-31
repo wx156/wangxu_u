@@ -1,11 +1,13 @@
 package com.kfm.boot.controller;
 
 import com.kfm.boot.entity.FileModel;
+import com.kfm.boot.entity.Page;
 import com.kfm.boot.entity.User;
 import com.kfm.boot.ex.ServiceException;
 import com.kfm.boot.service.FileService;
 import com.kfm.boot.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,9 +24,17 @@ public class FileController {
     private FileService fileService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ModelAndView list(ModelAndView mv) {
-        List<FileModel> list = fileService.list();
-        mv.addObject("list", list);
+    public ModelAndView list(ModelAndView mv,
+                             @RequestParam(value = "p",defaultValue = "1") int pageNum,
+                             @RequestParam(value = "s", defaultValue = "5") int pageSize,
+                             FileModel fileModel) throws ServiceException {
+
+        List<FileModel> list = fileService.list(fileModel,pageNum,pageSize);
+        int total = fileService.getTotal(fileModel);
+        // 构建一个分页对象
+        Page page = new Page(pageNum,pageSize,total,list);
+        mv.addObject("page",page);
+        mv.addObject("search",fileModel);
         mv.setViewName("file/list");
         return mv;
     }
@@ -48,5 +58,4 @@ public class FileController {
         }
         return mv;
     }
-
 }

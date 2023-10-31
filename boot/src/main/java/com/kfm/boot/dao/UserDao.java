@@ -23,7 +23,7 @@ public class UserDao {
      * @throws SQLException
      */
     public User selectByUsernameAndPassword(String username, String password) throws SQLException {
-        String sql = "select id, username, name from user where username = ? and password = ?";
+        String sql = "select id, username, name, avatar from user where username = ? and password = ?";
         return db.selectOne(sql, User.class, username, password);
     }
 
@@ -76,10 +76,14 @@ public class UserDao {
             sql.append("name = ?, ");
             params.add(user.getName());
         }
+        if (user.getAvatar() != null){
+            sql.append("avatar = ?, ");
+            params.add(user.getAvatar());
+        }
         // 其他字段同理
 
         // 最后会多一个 , 需要去掉
-        sql.deleteCharAt(sql.length() - 1);
+        sql.deleteCharAt(sql.length() - 2);
 
         sql.append(" where id = ?");
         params.add(user.getId());
