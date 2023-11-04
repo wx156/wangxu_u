@@ -9,4 +9,8 @@ public interface IUserinfoDao {
      * 查询所有用户
      */
     List<UserinfoModel> findAll();
+    /**
+     * 查询单个用户信息
+      */
+    UserinfoModel  findById(String id);
 }

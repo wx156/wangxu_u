@@ -6,8 +6,13 @@
 <mapper namespace="com.kfm.mybatis.dao.IUserinfoDao">
 
     <!-- 结果集映射 -->
-    <resultMap id="result" type="com.kfm.mybatis.model.UserinfoModel"></resultMap>
-    <select id="findAll">
+    <resultMap id="result" type="com.kfm.mybatis.model.UserinfoModel">
+
+    </resultMap>
+    <select id="findAll" resultType="com.kfm.mybatis.model.UserinfoModel">
         select * from userinfo
+    </select>
+    <select id="findById" resultType="com.kfm.mybatis.model.UserinfoModel">
+        select * from userinfo where id = #{id}
     </select>
 </mapper>
