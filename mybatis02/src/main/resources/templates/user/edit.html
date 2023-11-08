@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>修改</title>
+  <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+</head>
+<body>
+<form class="layui-form" th:action="@{/user/edit}" method="post">
+  <input type="hidden" name="id" th:value="${user.id}" lay-filter="form-demo-submit">
+  <div class="layui-form-item">
+    <label class="layui-form-label">用户名</label>
+    <div class="layui-input-block">
+      <input th:if="${user.username != null}" type="text" name="username" lay-verify="required" placeholder="请输入" disabled autocomplete="off" class="layui-input layui-disabled" th:value="${user.username}">
+      <input th:if="${user.username == null}" type="text" name="username" lay-verify="required|username" placeholder="请输入" autocomplete="off" class="layui-input" th:value="${user.username}">
+    </div>
+  </div>
+  <div class="layui-form-item" th:if="${user.id == null}">
+    <label class="layui-form-label">密码</label>
+    <div class="layui-input-block">
+      <input type="password" name="password" lay-verify="required" placeholder="请输入密码" lay-reqtext="请输入密码" autocomplete="off" class="layui-input" lay-affix="eye">
+    </div>
+  </div>
+  <div class="layui-form-item"  th:if="${user.id == null}">
+    <label class="layui-form-label">确认密码</label>
+    <div class="layui-input-block">
+      <input type="password" name="repass" lay-verify="required" placeholder="请输入确认密码" lay-reqtext="请输入确认密码" autocomplete="off" class="layui-input" lay-affix="eye">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">姓名</label>
+    <div class="layui-input-block">
+      <input type="text" name="name" lay-verify="required|name" placeholder="请输入姓名" lay-reqtext="请填写姓名" autocomplete="off" class="layui-input" th:value="${user.name}">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">电话</label>
+    <div class="layui-input-block">
+      <input type="text" name="phone" lay-verify="required|phone" placeholder="请输入电话"  lay-reqtext="请输入电话" autocomplete="off" class="layui-input" th:value="${user.phone}">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">邮箱</label>
+    <div class="layui-input-block">
+      <input type="text" name="email" lay-verify="required|email" placeholder="请输入邮箱"   lay-reqtext="请输入邮箱" autocomplete="off" class="layui-input" th:value="${user.email}">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button type="button" class="layui-btn" lay-submit lay-filter="demo1">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+</form>
+<script th:src="@{/layui/layui.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+  // thymeleaf 获取当前项目路径
+  /*<![CDATA[*/
+  const ctx = /*[[@{/}]]*/;
+  /*]]>*/
+</script>
+<script>
+  layui.use(['form'], function() {
+    var form = layui.form;
+
+    // 自定义验证规则
+    form.verify({
+      username: function(value, elem){
+        if (!isValidUsername(value)){
+          return '用户名只能由英文和数字组成，以英文字母开头';
+        }
+      },
+      name: function(value, elem) {
+        // console.log(value); // 当前进入验证的表单项的值
+        // console.log(elem); // 当前进入验证的表单项的 DOM 元素
+
+        if (!isChinese(value)){
+          return '姓名只能是中文';
+        }
+      },
+      phone: function(value, elem){
+        if (!isValidChinesePhoneNumber(value)){
+          return '手机号格式不正确';
+        }
+      }
+    });
+    // 监听表单提交
+    form.on('submit(demo1)', function(data){
+      var field = data.field; // 获取表单全部字段值
+      // 通过 js 提交表单
+      form.submit('form-demo-submit', function(data){
+        // 执行提交
+        layer.confirm('确定提交吗？', function(index){
+          layer.close(index); // 关闭确认提示框
+          // js 提交表单
+          // 此处可执行 Ajax 等操作 fetch(url,config).then()
+          fetch(ctx + "user/edit", {
+            method: "post",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            },
+            // URLSearchParams 对象用于将查询字符串添加到URL中
+            // JSON.stringify(field) 也可以 将对象转换为 json字符串, Content-Type: application/json 后端 @RequestBody 接收
+            body: new URLSearchParams(field)
+          }).then(function (response) {
+            // 将响应结果转换为 json 对象
+            return response.json();
+          }).then(function (data) {
+            // data 通过 上一步 response.json() 转换为 json 对象
+            if (data.code == 200) {
+              layer.msg("操作成功", {icon: 1, time: 3000}, function () {
+                // // 关闭当前页面
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(index);
+
+                // parent.layer.closeAll(); // 关闭所有弹出层
+                // 刷新父页面
+                // parent.location.reload();
+
+                // 调用父页面的函数
+                parent.reloadTable();
+              });
+            } else {
+              layer.msg(data.msg, {icon: 2, time: 3000});
+            }
+          }).catch(function (error) {
+            console.log(error);
+            layer.msg('服务器错误', {icon: 2, time: 3000});
+          });
+        });
+      });
+      return false;
+    });
+
+    return false;
+
+    // 中文验证
+    function isChinese(input) {
+      var chinesePattern = /^[\u4e00-\u9fa5]+$/;
+      return chinesePattern.test(input);
+    }
+
+    function isValidChinesePhoneNumber(phoneNumber) {
+      // 中国大陆手机号正则表达式，支持13、14、15、16、17、18、19开头的手机号
+      var phonePattern = /^1[3-9]\d{9}$/;
+      return phonePattern.test(phoneNumber);
+    }
+
+    function isValidUsername(username) {
+      // 用户名只能由英文和数字组成，以英文字母开头
+      var usernamePattern = /^[a-zA-Z][a-zA-Z0-9]*$/;
+      return usernamePattern.test(username);
+    }
+
+
+  });
+</script>
+
+</body>
+</html>

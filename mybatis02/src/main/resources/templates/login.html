@@ -6,26 +6,55 @@
 </head>
 <body>
 <h2>登录</h2>
-<form action="/login" method="post">
-    <div>
-        <label for="username">用户名:</label>
-        <input type="text" id="username" name="username" required>
-    </div>
-    <div>
-        <label for="password">密码:</label>
-        <input type="password" id="password" name="password" required>
-    </div>
-    <div>
-        <label for="captcha">验证码:</label>
-        <input type="text" id="captcha" name="captcha" required>
-        <img th:src="@{captcha}" alt="验证码">
-    </div>
-    <div>
-        <input type="submit" value="登录">
-    </div>
-    <div class="register">
-        <a th:href="@{/register}">没有账号？去注册</a>
-    </div>
-</form>
+<div class="login-container">
+    <form action="/login" method="post">
+        <div>
+            <label for="username">用户名:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">密码:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <label for="captcha">验证码:</label>
+            <input type="text" id="captcha" name="captcha" required>
+            <img th:src="@{captcha}" alt="验证码">
+        </div>
+        <div>
+            <p class="error" th:text="${message}"></p>
+            <br>
+            <input type="submit" value="登录">
+        </div>
+        <div class="register">
+            <a th:href="@{/register}">没有账号？去注册</a>
+        </div>
+    </form>
+    <script type="text/javascript" th:inline="javascript">
+        // thymeleaf 获取当前项目路径
+        /*<![CDATA[*/
+        const ctx = /*[[@{/}]]*/;
+        /*]]>*/
+        // 当前窗口 不是最外层窗口
+        if (window != window.top) {
+            // 父窗口 window.parent，最外层窗口 window.top
+            window.top.location.href = ctx;
+        }
+    </script>
+
+    <script>
+        function send() {
+            for (let i = 0; i < 100; i++) {
+                fetch("/send", {
+                    method: "get",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                });
+            }
+        }
+    </script>
+</div>
 </body>
 </html>

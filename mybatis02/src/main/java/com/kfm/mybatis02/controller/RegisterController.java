@@ -37,8 +37,8 @@ public class RegisterController {
         }
         // 清除验证码
         CaptchaUtil.clear(request);
-
-        if (userService.register(userModel) == null){
+        Integer register = userService.register(userModel);
+        if (register == null || register == 0){
             return new ModelAndView("register");
         };
         return new ModelAndView("login");

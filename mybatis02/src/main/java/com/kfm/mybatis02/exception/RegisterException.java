@@ -2,6 +2,7 @@ package com.kfm.mybatis02.exception;
 
 public class RegisterException extends Exception{
     /**
+     * 注册异常类
      * 0: 参数校验失败
      * 1: 用户名已存在
      * 2: 密码不一致
@@ -21,7 +22,12 @@ public class RegisterException extends Exception{
         this.code = code;
     }
 
+    /**
+     * 获取错误码
+     * @return 错误码
+     */
     public int getCode() {
         return code;
     }
 }
+

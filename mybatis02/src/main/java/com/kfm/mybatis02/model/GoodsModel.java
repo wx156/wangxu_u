@@ -7,12 +7,37 @@ import java.util.Date;
 
 @Data
 public class GoodsModel implements Serializable {
+    /**
+     * 商品ID
+     */
     private Integer id;
-    private String goodsName;
+    /**
+     * 商品名称
+     */
+    private String goodName;
+    /**
+     * 成本价
+     */
     private Integer cost;
+    /**
+     * 销售价
+     */
     private Integer price;
+    /**
+     * 数量
+     */
     private Integer nums;
-    private Integer stock;
-    private Date createTime;
-    private Date updateTime;
+    /**
+     * 库存
+     */
+    private Integer state;
+    /**
+     * 创建时间
+     */
+    private Date createDate;
+    /**
+     * 更新时间
+     */
+    private Date updateDate;
 }
+

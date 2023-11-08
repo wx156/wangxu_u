@@ -65,3 +65,8 @@ input[type="submit"]:hover {
 .register a{
     text-decoration: none;
 }
+.error{
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
+}
