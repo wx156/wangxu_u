@@ -15,7 +15,7 @@ public class UserController {
     @Autowired
    private UserServiceImpl userServiceImpl;
     @GetMapping("/list")
-    public ModelAndView list(UserModel userModel) throws ServiceException {
+    public ModelAndView list() throws ServiceException {
         return new ModelAndView("user/list");
     }
     @GetMapping("/page")

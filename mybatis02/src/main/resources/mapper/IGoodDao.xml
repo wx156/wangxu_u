@@ -2,12 +2,174 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kfm.mybatis02.dao.IGoodDao">
+    <sql id="GoodsModel_value">
+        id,good_name,cost,price,nums,state,create_date,update_date
+    </sql>
+
 
     <select id="listUpGoods" resultType="com.kfm.mybatis02.model.GoodsModel">
-        select * from goods where state = 1
+        select
+        <include refid="GoodsModel_value"/>
+        from goods
+        <where>
+            <if test="id!= null">
+                and id = #{id}
+            </if>
+            <if test="goodName!= null and goodName!= ''">
+                and good_name = #{goodName}
+            </if>
+            <if test="cost!= null">
+                and cost = #{cost}
+            </if>
+            <if test="price!= null">
+                and price = #{price}
+            </if>
+            <if test="nums!= null">
+                and nums = #{nums}
+            </if>
+            <if test="createDate!= null">
+                and create_date = #{createDate}
+            </if>
+            <if test="updateDate!= null">
+                and update_date = #{updateDate}
+            </if>
+            <if test="state== null">
+                and state = 1
+            </if>
+        </where>
     </select>
 
     <select id="listDownGoods" resultType="com.kfm.mybatis02.model.GoodsModel">
-        select * from goods where state = 0
+        select
+        <include refid="GoodsModel_value"/>
+        from goods
+        <where>
+            <if test="id!= null">
+                and id = #{id}
+            </if>
+            <if test="goodName!= null and goodName!= ''">
+                and good_name = #{goodName}
+            </if>
+            <if test="cost!= null">
+                and cost = #{cost}
+            </if>
+            <if test="price!= null">
+                and price = #{price}
+            </if>
+            <if test="nums!= null">
+                and nums = #{nums}
+            </if>
+            <if test="createDate!= null">
+                and create_date = #{createDate}
+            </if>
+            <if test="updateDate!= null">
+                and update_date = #{updateDate}
+            </if>
+            <if test="state== null">
+                and state = 0
+            </if>
+        </where>
     </select>
+    <delete id="deleteById" parameterType="integer">
+        delete from goods where id = #{id}
+    </delete>
+    <update id="putAwayById" parameterType="integer">
+        update goods set state = 1 where id = #{id}
+    </update>
+    <update id="downById" parameterType="integer">
+        update goods set state = 0 where id = #{id}
+    </update>
+    <select id="selectByPrimaryKey" resultType="com.kfm.mybatis02.model.GoodsModel">
+        select
+        <include refid="GoodsModel_value"/>
+        from goods
+        where id = #{id}
+    </select>
+    <update id="updateByPrimaryKeySelective" parameterType="com.kfm.mybatis02.model.GoodsModel">
+        update goods
+        <set>
+            <if test="id!= null">
+                id = #{id},
+            </if>
+            <if test="goodName!= null and goodName!= ''">
+                good_name = #{goodName},
+            </if>
+            <if test="cost!= null">
+                cost = #{cost},
+            </if>
+            <if test="price!= null">
+                price = #{price},
+            </if>
+            <if test="nums!= null">
+                nums = #{nums},
+            </if>
+            <if test="state!= null">
+                state = #{state}
+            </if>
+            <if test="createDate!= null">
+                create_date = #{createDate},
+            </if>
+            <if test="updateDate!= null">
+                update_date = #{updateDate},
+            </if>
+        </set>
+    </update>
+    <insert id="insertGoodmodel" parameterType="com.kfm.mybatis02.model.GoodsModel">
+        insert into goods (
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!= null">
+                id,
+            </if>
+            <if test="goodName!= null and goodName!= ''">
+                good_name,
+            </if>
+            <if test="cost!= null">
+                cost,
+            </if>
+            <if test="price!= null">
+                price,
+            </if>
+            <if test="nums!= null">
+                nums,
+            </if>
+            <if test="state!= null">
+                state,
+            </if>
+            <if test="createDate!= null">
+                create_date,
+            </if>
+            <if test="updateDate!= null">
+                update_date,
+            </if>
+        </trim>
+        )
+        values (
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!= null">
+                #{id},
+            </if>
+            <if test="goodName!= null and goodName!= ''">
+                #{goodName},
+            </if>
+            <if test="cost!= null">
+                #{cost},
+            </if>
+            <if test="price!= null">
+                #{price},
+            </if>
+            <if test="nums!= null">
+                #{nums},
+            </if>
+            <if test="state!= null">
+                #{state},
+            </if>
+            <if test="createDate!= null">
+                #{createDate},
+            </if>
+            <if test="updateDate!= null">
+                #{updateDate},
+            </if>
+        </trim>
+        )
+    </insert>
 </mapper>

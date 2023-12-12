@@ -92,7 +92,7 @@
             var layEvent = obj.event; // 获得元素对应的 lay-event 属性值
             // var tr = obj.tr; // 得到当前行 <tr> 元素的 jQuery 对象
             // var options = obj.config; // 获取当前表格基础属性配置项
-            // console.log(obj); // 查看对象所有成员
+                console.log(obj); // 查看对象所有成员
 
             if (layEvent == 'edit') {
                 console.log("编辑, " + data.id);
@@ -105,13 +105,23 @@
                     content: ctx + 'user/edit?id=' + data.id
                 });
             } else if (layEvent == 'delete') {
-                console.log("删除");
-                layer.open({
-                    type: 2,
-                    title: '删除用户信息',
-                    // shadeClose: true,
-                    content: ctx + 'user/delete?id=' + data.id,
-                    reloadTable
+                layer.confirm('确定删除？', {icon: 3}, function (index) {
+                    layui.$.ajax({
+                        url: ctx + 'user/delete',
+                        type: 'get',
+                        data: {id: data.id},
+                        success: function (res) {
+                            if (res.code == 200) {
+                                layer.msg('删除成功', {icon: 1});
+                                obj.del();
+                            } else {
+                                layer.msg('删除失败');
+                            }
+                        }
+                    });
+                    layer.close(index);
+                },function (){
+                    layer.msg('取消删除');
                 });
             }
         });

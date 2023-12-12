@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{element/index.css}">
+</head>
+<body>
+<div id="app">
+    <el-row justify="space-between">
+        <el-col :span="2"><h1>学生列表</h1></el-col>
+        <el-col :span="2"
+        ><el-button
+                type="primary"
+                size="large"
+                @click="dialogVisible = true"
+        >添加学生</el-button
+        ></el-col
+        >
+    </el-row>
+    <el-row>
+        <el-col>
+            <el-table :data="tableData" style="width: 100%"
+                      empty-text="暂无数据"
+            >
+                <el-table-column
+                        label="序号"
+                        width="180"
+                >
+                    <template #default="scope">
+                        <span>{{ scope.$index + 1 }}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        prop="name"
+                        label="name"
+                        width="180"
+                ></el-table-column>
+                <el-table-column
+                        prop="desc1"
+                        label="desc"
+                ></el-table-column>
+                <el-table-column label="操作">
+                    <template #default="scope">
+                        <el-button
+                                size="small"
+                                @click="handleEdit(scope.$index, scope.row)"
+                        >Edit</el-button
+                        >
+                        <el-button
+                                size="small"
+                                type="danger"
+                                @click="handleDelete(scope.$index, scope.row)"
+                        >Delete</el-button
+                        >
+                    </template>
+                </el-table-column>
+            </el-table>
+        </el-col>
+    </el-row>
+
+    <!-- 添加界面 -->
+    <el-dialog
+            v-model="dialogVisible"
+            title="Tips"
+            width="30%"
+            :before-close="handleClose"
+    >
+        <span>This is a message</span>
+        <input />
+        <template #footer>
+          <span class="dialog-footer">
+            <el-button @click="dialogVisible = false">Cancel</el-button>
+            <el-button type="primary" @click="dialogVisible = false">
+              Confirm
+            </el-button>
+          </span>
+        </template>
+    </el-dialog>
+</div>
+
+</body>
+<script type="text/javascript" th:inline="javascript">
+    // thymeleaf 获取当前项目路径
+    /*<![CDATA[*/
+    const ctx = /*[[@{/}]]*/;
+    /*]]>*/
+</script>
+<script th:src="@{/js/vue.global.js}"></script>
+<script th:src="@{/js/axios.min.js}"></script>
+<script th:src="@{/element/element-plus.js}"></script>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                tableData:[]
+            }
+        },
+        methods: {
+
+            handleEdit(index, row) {
+                console.log(index, row);
+            },
+            handleDelete(index, row) {
+                console.log(index, row);
+            },
+            getData(){
+                // 获取数据
+                console.log("获取数据");
+                axios.get(ctx + 'dept/list').then(res => {
+                    console.log(res);
+                    let result = res.data; // 响应的结果
+                    if (result.code == 200){
+                        this.tableData = result.data;
+                    } else {
+                        console.error("获取数据失败");
+                    }
+                }).catch(err => {
+                    console.error(err);
+                })
+            }
+
+        },
+        mounted() {
+            this.getData();
+        }
+    });
+    var vm = app.use(ElementPlus);
+    // 挂载
+    vm.mount('#app');
+</script>
+</html>

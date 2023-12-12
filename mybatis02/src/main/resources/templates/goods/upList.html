@@ -9,15 +9,15 @@
 <form class="layui-form layui-row layui-col-space16" style="margin-top: 20px">
     <div class="layui-form-item">
         <div class="layui-inline">
-            <label class="layui-form-label">姓名</label>
+            <label class="layui-form-label">商品名称</label>
             <div class="layui-input-inline">
-                <input type="text" name="name" autocomplete="off" class="layui-input">
+                <input type="text" name="goodName" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-inline">
-            <label class="layui-form-label">用户名</label>
+            <label class="layui-form-label">库存</label>
             <div class="layui-input-inline layui-input-wrap">
-                <input type="text" name="username" autocomplete="off" class="layui-input">
+                <input type="text" name="nums" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-inline">
@@ -32,7 +32,7 @@
 <script type="text/html" id="barDemo">
     <div class="layui-clear-space">
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-        <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="delete">下架
+        <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="undercarriage">下架
         </a>
     </div>
 </script>
@@ -99,20 +99,27 @@
                     console.log("编辑, " + data.id);
                     layer.open({
                         type: 2,
-                        title: '修改用户信息',
+                        title: '修改商品信息',
                         // shadeClose: true,
                         maxmin: true, //开启最大化最小化按钮
                         area: ['600px', '400px'],
-                        content: ctx + 'user/edit?id=' + data.id
+                        content: ctx + 'goods/edit?id=' + data.id
                     });
-                } else if (layEvent == 'delete') {
-                    console.log("删除");
-                    layer.open({
-                        type: 2,
-                        title: '删除用户信息',
-                        // shadeClose: true,
-                        content: ctx + 'user/delete?id=' + data.id,
-                        reloadTable
+                } else if (layEvent == 'undercarriage') {
+                    layui.$.ajax({
+                        url: ctx + 'goods/undercarriage',
+                        type: 'get',
+                        data: {
+                            id: data.id
+                        },
+                        success: function (res) {
+                            if (res.code == 200) {
+                                layer.msg('下架成功');
+                                obj.del();
+                            } else {
+                                layer.msg('下架失败');
+                            }
+                        }
                     });
                 }
             });
@@ -130,11 +137,11 @@
                 case 'add':
                     layer.open({
                         type: 2,
-                        title: '添加用户',
+                        title: '添加商品信息',
                         // shadeClose: true,
                         maxmin: true, //开启最大化最小化按钮
                         area: ['600px', '400px'],
-                        content: ctx + 'user/edit'
+                        content: ctx + 'goods/edit'
                     });
                     break;
                 case 'delete':

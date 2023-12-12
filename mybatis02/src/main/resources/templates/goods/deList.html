@@ -9,15 +9,15 @@
 <form class="layui-form layui-row layui-col-space16" style="margin-top: 20px">
     <div class="layui-form-item">
         <div class="layui-inline">
-            <label class="layui-form-label">姓名</label>
+            <label class="layui-form-label">商品名称</label>
             <div class="layui-input-inline">
-                <input type="text" name="name" autocomplete="off" class="layui-input">
+                <input type="text" name="goodName" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-inline">
-            <label class="layui-form-label">用户名</label>
+            <label class="layui-form-label">成本</label>
             <div class="layui-input-inline layui-input-wrap">
-                <input type="text" name="username" autocomplete="off" class="layui-input">
+                <input type="text" name="cost" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-inline">
@@ -31,7 +31,7 @@
 
 <script type="text/html" id="barDemo">
     <div class="layui-clear-space">
-        <a class="layui-btn layui-btn-xs" lay-event="edit">上架</a>
+        <a class="layui-btn layui-btn-xs" lay-event="putaway">上架</a>
         <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="delete">删除
         </a>
     </div>
@@ -49,13 +49,12 @@
         table = layui.table;
         form = layui.form;
 
-        // 渲染
         table.render({
+            toolbar: false,
             elem: '#ID-table-demo-parse',
             id: 'test',
             url: ctx + 'goods/dePage',
             page: true,
-            toolbar: 'default',
             response: {
                 statusCode: 200 // 重新规定成功的状态码为 200，table 组件默认为 0
             },
@@ -92,59 +91,47 @@
                 var layEvent = obj.event; // 获得元素对应的 lay-event 属性值
                 // var tr = obj.tr; // 得到当前行 <tr> 元素的 jQuery 对象
                 // var options = obj.config; // 获取当前表格基础属性配置项
-                // console.log(obj); // 查看对象所有成员
+                //console.log(obj); // 查看对象所有成员net net
 
-                if (layEvent == 'edit') {
-                    console.log("编辑, " + data.id);
-                    layer.open({
-                        type: 2,
-                        title: '修改用户信息',
-                        // shadeClose: true,
-                        maxmin: true, //开启最大化最小化按钮
-                        area: ['600px', '400px'],
-                        content: ctx + 'goods/edit?id=' + data.id
-                    });
+                if (layEvent == 'putaway') {
+                    layui.$.ajax({
+                        url: ctx + 'goods/putAway',
+                        type: 'get',
+                        data: {id: data.id},
+                        success: function (res) {
+                            if (res.code == 200) {
+                                layer.msg('上架成功', {icon: 1});
+                                // 更新表表格数据
+                                table.reload('test');
+                                obj.update({
+                                    status: 1
+                                });
+                            } else {
+                                layer.msg('上架失败');
+                            }
+                        }
+                    })
                 } else if (layEvent == 'delete') {
-                    console.log("删除");
-                    layer.open({
-                        type: 2,
-                        title: '删除用户信息',
-                        // shadeClose: true,
-                        content: ctx + 'user/delete?id=' + data.id,
-                        reloadTable
+                    layer.confirm('确定删除？', {icon: 3}, function (index) {
+                        layui.$.ajax({
+                            url: ctx + 'goods/delete',
+                            type: 'get',
+                            data: {id: data.id},
+                            success: function (res) {
+                                if (res.code == 200) {
+                                    layer.msg('删除成功', {icon: 1});
+                                    obj.del();
+                                } else {
+                                    layer.msg('删除失败');
+                                }
+                            }
+                        });
+                        layer.close(index);
+                    },function (){
+                        layer.msg('取消删除');
                     });
                 }
             });
-
-
-        // 头部工具栏事件
-        table.on('toolbar(test)', function (obj) {
-            var options = obj.config; // 获取当前表格属性配置项
-            var checkStatus = table.checkStatus(options.id); // 获取选中行相关数据
-            console.log(obj); // 查看对象所有成员
-            console.log(checkStatus)
-
-            // 根据不同的事件名进行相应的操作
-            switch (obj.event) { // 对应模板元素中的 lay-event 属性值
-                case 'add':
-                    layer.open({
-                        type: 2,
-                        title: '添加用户',
-                        // shadeClose: true,
-                        maxmin: true, //开启最大化最小化按钮
-                        area: ['600px', '400px'],
-                        content: ctx + 'user/edit'
-                    });
-                    break;
-                case 'delete':
-                    layer.msg('删除');
-                    break;
-                case 'update':
-                    layer.msg('编辑');
-                    break;
-            };
-        });
-
 
         // 搜索提交
         form.on('submit(demo-table-search)', function (data) {

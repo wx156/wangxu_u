@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>修改</title>
+  <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+</head>
+<body>
+<form class="layui-form" th:action="@{/goods/edit}" method="post">
+  <input type="hidden" name="id" th:value="${good.id}" lay-filter="form-demo-submit">
+  <div class="layui-form-item">
+    <label class="layui-form-label">商品名称</label>
+    <div class="layui-input-block">
+      <input th:if="${good.goodName != null}" type="text" name="goodName" lay-verify="required" placeholder="请输入" disabled autocomplete="off" class="layui-input layui-disabled" th:value="${good.goodName}">
+      <input th:if="${good.goodName == null}" type="text" name="goodName" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" th:value="${good.goodName}">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">商品成本</label>
+    <div class="layui-input-block">
+      <input type="text" name="cost" lay-verify="required" placeholder="请输入商品成本" lay-reqtext="请输入商品成本" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">商品售价</label>
+    <div class="layui-input-block">
+      <input type="text" name="price" lay-verify="required" placeholder="请输入商品售价" lay-reqtext="请输入商品售价" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">商品库存</label>
+    <div class="layui-input-block">
+      <input type="text" name="nums" lay-verify="required" placeholder="请输入商品库存"  lay-reqtext="请输入商品库存" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button type="button" class="layui-btn" lay-submit lay-filter="demo1">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+</form>
+<script th:src="@{/layui/layui.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+  // thymeleaf 获取当前项目路径
+  /*<![CDATA[*/
+  const ctx = /*[[@{/}]]*/;
+  /*]]>*/
+</script>
+<script>
+  layui.use(['form'], function() {
+    var form = layui.form;
+
+    // 监听表单提交
+    form.on('submit(demo1)', function(data){
+      var field = data.field; // 获取表单全部字段值
+      // 通过 js 提交表单
+      form.submit('form-demo-submit', function(data){
+        // 执行提交
+        layer.confirm('确定提交吗？', function(index){
+          layer.close(index); // 关闭确认提示框
+          // js 提交表单
+          // 此处可执行 Ajax 等操作 fetch(url,config).then()
+          fetch(ctx + "user/edit", {
+            method: "post",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            },
+            // URLSearchParams 对象用于将查询字符串添加到URL中
+            // JSON.stringify(field) 也可以 将对象转换为 json字符串, Content-Type: application/json 后端 @RequestBody 接收
+            body: new URLSearchParams(field)
+          }).then(function (response) {
+            // 将响应结果转换为 json 对象
+            return response.json();
+          }).then(function (data) {
+            // data 通过 上一步 response.json() 转换为 json 对象
+            if (data.code == 200) {
+              layer.msg("操作成功", {icon: 1, time: 3000}, function () {
+                // // 关闭当前页面
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(index);
+
+                // parent.layer.closeAll(); // 关闭所有弹出层
+                // 刷新父页面
+                // parent.location.reload();
+
+                // 调用父页面的函数
+                parent.reloadTable();
+              });
+            } else {
+              layer.msg(data.msg, {icon: 2, time: 3000});
+            }
+          }).catch(function (error) {
+            console.log(error);
+            layer.msg('服务器错误', {icon: 2, time: 3000});
+          });
+        });
+      });
+      return false;
+    });
+
+    return false;
+
+  });
+</script>
+
+</body>
+</html>

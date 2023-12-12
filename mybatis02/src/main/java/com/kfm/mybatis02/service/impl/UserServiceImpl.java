@@ -119,6 +119,4 @@ public class UserServiceImpl implements IUserService {
         }
         userDao.deleteByPrimaryKey(id);
     }
-
-
 }
