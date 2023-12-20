@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kfm.system.mapper.MenuMapper">
+<mapper namespace="com.kfm.shop.system.mapper.MenuMapper">
 
-    <resultMap id="BaseResultMap" type="com.kfm.system.domain.Menu">
+    <resultMap id="BaseResultMap" type="com.kfm.shop.system.domain.Menu">
             <id property="id" column="id" jdbcType="INTEGER"/>
             <result property="name" column="name" jdbcType="VARCHAR"/>
             <result property="permissionCode" column="permission_code" jdbcType="VARCHAR"/>

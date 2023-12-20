@@ -15,4 +15,4 @@ spring:
 ## logging
 logging:
   level:
-    com.kfm.goods.mapper: debug
+    com.kfm.shop.goods.mapper: debug
