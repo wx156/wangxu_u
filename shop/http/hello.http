@@ -1,0 +1,3 @@
+## HTTP helloceshi
+GET http://localhost:80/hello
+Accept: application/json'
