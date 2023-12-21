@@ -1,7 +1,10 @@
 package com.kfm.shop.system.service;
 
+import cn.hutool.core.lang.tree.Tree;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.kfm.shop.system.domain.Menu;
+
+import java.util.List;
 
 /**
 * @author wangxu
@@ -10,4 +13,5 @@ import com.kfm.shop.system.domain.Menu;
 */
 public interface MenuService extends IService<Menu> {
 
+    List<Tree<Integer>> treeList(Menu menu);
 }

@@ -23,17 +23,7 @@ public class MenuController {
     @ApiOperation(value = "获取所有菜单信息", notes = "获取所有菜单信息")
     public Result getMenu(@ApiParam(name = "menu", value = "菜单信息") Menu menu) {
 //        throw new RuntimeException("模拟异常");
-        // 构建查询条件
-        QueryWrapper<Menu> queryWrapper = new QueryWrapper<>();
-        if (!ObjectUtils.isEmpty(menu.getName())) {
-            queryWrapper.like("name", menu.getName());
-        }
-        if (!ObjectUtils.isEmpty(menu.getType())){
-            queryWrapper.eq("status", menu.getType());
-        }
-        // 分页
-        PageHelper.startPage(menu.getPage(), menu.getSize());
-        return Result.ok(menuService.list(queryWrapper));
+        return Result.ok(menuService.treeList(menu));
     }
 
     @GetMapping("/{id}")

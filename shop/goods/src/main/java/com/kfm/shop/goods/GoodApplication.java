@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class GoodApplication {
     public static void main(String[] args) {
         // 启动类，程序入口
-        System.out.println("Hello World!");
         SpringApplication.run(GoodApplication.class, args);
+        System.out.println("商品模块启动成功");
     }
 }

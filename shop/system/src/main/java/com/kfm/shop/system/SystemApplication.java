@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SystemApplication {
     public static void main(String[] args) {
         // 启动类，程序入口
-        System.out.println("Hello World!");
         SpringApplication.run(SystemApplication.class, args);
+        System.out.println("系统模块启动成功");
     }
 }

@@ -50,6 +50,11 @@ public class Menu extends BaseModel implements Serializable {
     private Integer type;
 
 
+    /**
+     * 菜单排序
+     */
+    private Integer orderNum;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }
