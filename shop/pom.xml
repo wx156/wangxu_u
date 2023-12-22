@@ -22,13 +22,7 @@
     </properties>
 
     <dependencies>
-        <!--  https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent  -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-dependencies</artifactId>
-            <version>${spring.boot.version}</version>
-            <type>pom</type>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -50,6 +44,13 @@
     <!--  dependencyManagement 可选依赖，子模块可以通过声明来使用此依赖  -->
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!--  https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web  -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>

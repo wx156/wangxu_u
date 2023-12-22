@@ -5,40 +5,34 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import java.util.List;
 
-import com.kfm.shop.common.model.BaseModel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
  * 
- * @TableName sys_role
+ * @TableName sys_role_menu
  */
-@TableName(value ="sys_role")
+@TableName(value ="sys_role_menu")
 @Data
 @ToString(callSuper = true)
-public class Role extends BaseModel implements Serializable {
+@AllArgsConstructor
+@NoArgsConstructor
+public class RoleMenu implements Serializable {
     /**
      * 角色id
      */
-    @TableId(type = IdType.AUTO)
-    private Integer id;
+    @TableId
+    private Integer roleId;
 
     /**
-     * 角色名称
+     * 菜单id
      */
-    private String name;
-
-    /**
-     * 角色编码
-     */
-    private String roleCode;
-
+    @TableField
+    private Integer menuId;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
-
-    @TableField(exist = false)
-    private List<Menu> menus;
 }

@@ -36,7 +36,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu>
         // 配置
         TreeNodeConfig treeNodeConfig = new TreeNodeConfig();
         // 设置节点名
-//        treeNodeConfig.setChildrenKey("children");
+        treeNodeConfig.setChildrenKey("children");
         // 最大递归深度
         treeNodeConfig.setDeep(2);
 

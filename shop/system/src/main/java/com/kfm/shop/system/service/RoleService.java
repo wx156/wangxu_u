@@ -2,6 +2,7 @@ package com.kfm.shop.system.service;
 
 import com.kfm.shop.system.domain.Role;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.kfm.shop.system.domain.dto.RoleGrantMenuDTO;
 
 /**
 * @author wangxu
@@ -9,5 +10,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2023-12-19 23:35:48
 */
 public interface RoleService extends IService<Role> {
-
+    boolean grant(RoleGrantMenuDTO roleGrantMenuDTO);
 }
