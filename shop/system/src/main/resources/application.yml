@@ -1,6 +1,6 @@
 ## 端口
 server:
-  port: 8080
+  port: 80
 ## sql
 spring:
   datasource:
@@ -11,6 +11,9 @@ spring:
   devtools:
     restart:
       enabled: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 
 ## logging
 logging:

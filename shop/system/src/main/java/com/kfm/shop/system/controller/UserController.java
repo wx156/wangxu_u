@@ -61,4 +61,12 @@ public class UserController {
     public Result deleteUserById(@ApiParam(name = "id", value = "用户id", required = true) @PathVariable Integer id) {
         return Result.ok(userService.removeById(id));
     }
+    @PostMapping("/login")
+    @ApiOperation(value = "登录接口", notes = "登录")
+    public Result login(@RequestBody User user){
+        String token = userService.login(user);
+
+        // 权限信息存到 redis
+        return Result.ok("登录成功").put("token", token);
+    }
 }

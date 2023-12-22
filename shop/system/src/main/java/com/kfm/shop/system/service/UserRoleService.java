@@ -1,7 +1,10 @@
 package com.kfm.shop.system.service;
 
+import com.kfm.shop.system.domain.Role;
 import com.kfm.shop.system.domain.UserRole;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
 * @author wangxu
@@ -9,5 +12,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2023-12-21 16:08:34
 */
 public interface UserRoleService extends IService<UserRole> {
-
+    List<Role> selectRoleByUserId(Integer id);
 }

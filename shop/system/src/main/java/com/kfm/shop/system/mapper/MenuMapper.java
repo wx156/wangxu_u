@@ -2,6 +2,7 @@ package com.kfm.shop.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.kfm.shop.system.domain.Menu;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 

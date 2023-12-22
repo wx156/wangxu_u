@@ -64,6 +64,7 @@ public class RoleController {
         return Result.ok(roleService.removeById(id));
     }
     @PostMapping("/grant")
+    @ApiOperation(value = "根据id修改角色信息", notes = "根据id修改角色信息")
     public Result grantMenu(@RequestBody RoleGrantMenuDTO roleGrantMenuDTO){
         return Result.ok(roleService.grant(roleGrantMenuDTO));
     }

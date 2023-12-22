@@ -25,10 +25,9 @@
         from sys_role_menu t1
         inner join sys_menu t2 on t1.menu_id = t2.id
         where t1.role_id in
-        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
             #{id}
         </foreach>
-
         order by parent_id, order_num
     </select>
 </mapper>

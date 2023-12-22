@@ -27,8 +27,8 @@ class UserMapperTest {
         // 获取 roles 的所有 id
         List<Integer> ids = roles.stream().map((role) -> role.getId()).toList();
 
-        List<Menu> sysMenus = MenuMapper.selectMenusWithRoleIds(ids);
-        System.out.println(sysMenus);
+        List<Menu> Menus = MenuMapper.selectMenusWithRoleIds(ids);
+        System.out.println(Menus);
     }
 
 }
